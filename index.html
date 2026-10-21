@@ -1,1116 +1,2779 @@
 <!DOCTYPE html>
+
 <html lang="tr" class="scroll-smooth">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Murat Keskin | Mekatronik Mühendisi | CAD/CAE & PDM Application Engineer</title>
+
     <meta name="description" content="Murat Keskin - Marmara Üniversitesi Mekatronik Mühendisi | SOLIDWORKS CAD/CAE, PDM, 3DEXPERIENCE Uygulama Mühendisi ve Mühendislik Otomasyonu Portföyü.">
+
     
+
     <!-- Open Graph / LinkedIn Paylaşım Etiketleri -->
+
     <meta property="og:title" content="Murat Keskin | CAD/CAE & PDM Application Engineer">
+
     <meta property="og:description" content="3B Mekanik Tasarım (DFM), FEA/CFD Simülasyonları, SOLIDWORKS PDM/PLM Mimarisi ve Mühendislik Yazılım Otomasyonları Portföyü.">
+
     <meta property="og:type" content="website">
 
+
+
     <!-- Özel MK Mühendislik Sekme İkonu (Favicon) -->
+
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2318181b'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='monospace' font-weight='bold' font-size='44'>MK</text></svg>">
 
+
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script src="https://unpkg.com/lucide@latest"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     
+
     <script>
+
         tailwind.config = {
-            darkMode: 'class',
+
             theme: {
+
                 extend: {
+
                     fontFamily: {
+
                         sans: ['Inter', 'sans-serif'],
+
                         mono: ['JetBrains Mono', 'monospace'],
+
                     },
+
                     colors: {
+
                         zinc: {
+
                             50: '#fafafa',
+
                             100: '#f4f4f5',
+
                             200: '#e4e4e7',
+
                             300: '#d4d4d8',
+
                             700: '#3f3f46',
+
                             800: '#27272a',
+
                             900: '#18181b',
+
                         },
+
                         eng: {
+
                             blue: '#0284c7',
+
                             cyan: '#06b6d4',
+
                             amber: '#f59e0b'
+
                         }
+
                     }
+
                 }
+
             }
+
         }
+
     </script>
 
+
+
     <style>
+
         :root {
+
             --mouse-x: 50%;
+
             --mouse-y: 50%;
+
         }
+
+
 
         body {
+
             background-color: #fafafa;
+
             color: #18181b;
+
             -webkit-font-smoothing: antialiased;
+
             overflow-x: hidden;
+
         }
 
-        body.dark {
-            background-color: #09090b;
-            color: #f4f4f5;
-        }
+
 
         /* Mühendislik Teknik Izgara ve Dinamik Spotlight Arka Planı */
+
         .tech-grid {
+
             background-size: 36px 36px;
+
             background-image: 
+
                 linear-gradient(to right, rgba(24, 24, 27, 0.04) 1px, transparent 1px),
+
                 linear-gradient(to bottom, rgba(24, 24, 27, 0.04) 1px, transparent 1px);
+
         }
 
-        body.dark .tech-grid {
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-        }
+
 
         .cursor-spotlight {
+
             pointer-events: none;
+
             position: fixed;
+
             inset: 0;
+
             z-index: 1;
+
             background: radial-gradient(
+
                 650px circle at var(--mouse-x) var(--mouse-y),
+
                 rgba(2, 132, 199, 0.055),
+
                 transparent 80%
+
             );
+
         }
 
-        body.dark .cursor-spotlight {
-            background: radial-gradient(
-                650px circle at var(--mouse-x) var(--mouse-y),
-                rgba(6, 182, 212, 0.06),
-                transparent 80%
-            );
-        }
+
 
         /* Blueprint Kart Üstü */
+
         .blueprint-bg {
+
             background-color: #f8fafc;
+
             background-size: 16px 16px;
+
             background-image: 
+
                 linear-gradient(to right, rgba(2, 132, 199, 0.06) 1px, transparent 1px),
+
                 linear-gradient(to bottom, rgba(2, 132, 199, 0.06) 1px, transparent 1px);
+
             position: relative;
+
             overflow: hidden;
+
         }
 
-        body.dark .blueprint-bg {
-            background-color: #121215;
-            background-image: 
-                linear-gradient(to right, rgba(6, 182, 212, 0.08) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(6, 182, 212, 0.08) 1px, transparent 1px);
-        }
+
 
         .blueprint-bg::after {
+
             content: '';
+
             position: absolute;
+
             inset: 0;
+
             background: linear-gradient(90deg, transparent, rgba(2, 132, 199, 0.06), transparent);
+
             transform: translateX(-100%);
+
             transition: transform 0.7s ease;
+
         }
+
+
 
         .project-card:hover .blueprint-bg::after {
+
             transform: translateX(100%);
+
         }
+
+
 
         /* 3B Tilt & Parlama Efektli Kartlar */
+
         .tilt-card {
+
             transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+
             will-change: transform;
+
             transform-style: preserve-3d;
+
         }
+
+
 
         .tilt-card:hover {
+
             box-shadow: 0 20px 38px -15px rgba(24, 24, 27, 0.1), 0 0 0 1px rgba(24, 24, 27, 0.85);
+
             border-color: #18181b;
+
         }
 
-        body.dark .tilt-card:hover {
-            box-shadow: 0 20px 38px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.85);
-            border-color: #f4f4f5;
-        }
+
 
         /* SVG Teknik Çizim Animasyonları */
+
         .cad-path {
+
             stroke-dasharray: 260;
+
             stroke-dashoffset: 0;
+
             transition: stroke-dashoffset 0.8s ease, stroke 0.3s ease;
+
         }
+
+
 
         .project-card:hover .cad-path {
+
             animation: drawStroke 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
             stroke: #0284c7;
+
         }
+
+
 
         @keyframes drawStroke {
+
             0% { stroke-dashoffset: 260; }
+
             100% { stroke-dashoffset: 0; }
+
         }
+
+
 
         .spin-slow {
+
             transform-origin: center;
+
             animation: spinGear 10s linear infinite;
+
         }
+
+
 
         .spin-reverse {
+
             transform-origin: center;
+
             animation: spinGearRev 10s linear infinite;
+
         }
+
+
 
         .project-card:hover .spin-slow {
+
             animation-duration: 2.5s;
+
         }
+
         .project-card:hover .spin-reverse {
+
             animation-duration: 2.5s;
+
         }
+
+
 
         @keyframes spinGear {
+
             from { transform: rotate(0deg); }
+
             to { transform: rotate(360deg); }
+
         }
+
         @keyframes spinGearRev {
+
             from { transform: rotate(360deg); }
+
             to { transform: rotate(0deg); }
+
         }
+
+
+
+        /* Lazer Kesim Noktası Animasyonu */
 
         .laser-dot {
+
             animation: laserMove 4s infinite ease-in-out;
-        }
-        @keyframes laserMove {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(65px, 0); }
-            50% { transform: translate(65px, 35px); }
-            75% { transform: translate(0, 35px); }
+
         }
 
-        /* Daktilo İmleci Efekti */
-        .typed-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.1em;
-            background-color: currentColor;
-            margin-left: 3px;
-            animation: blink 0.8s infinite;
-            vertical-align: middle;
+        @keyframes laserMove {
+
+            0%, 100% { transform: translate(0, 0); }
+
+            25% { transform: translate(65px, 0); }
+
+            50% { transform: translate(65px, 35px); }
+
+            75% { transform: translate(0, 35px); }
+
         }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+
+
 
         /* Scroll Reveal Animasyonları */
+
         .reveal {
+
             opacity: 0;
+
             transform: translateY(22px);
+
             transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+
         }
+
+
 
         .reveal.active {
+
             opacity: 1;
+
             transform: translateY(0);
+
         }
+
+
+
+        /* Özel Kaydırma Çubuğu */
 
         ::-webkit-scrollbar {
+
             width: 8px;
+
         }
+
         ::-webkit-scrollbar-track {
+
             background: #f4f4f5;
+
         }
-        body.dark ::-webkit-scrollbar-track {
-            background: #18181b;
-        }
+
         ::-webkit-scrollbar-thumb {
+
             background: #d4d4d8;
+
             border-radius: 4px;
+
         }
-        body.dark ::-webkit-scrollbar-thumb {
-            background: #3f3f46;
+
+        ::-webkit-scrollbar-thumb:hover {
+
+            background: #18181b;
+
         }
+
     </style>
+
 </head>
-<body class="tech-grid min-h-screen flex flex-col justify-between selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-zinc-900 relative">
+
+<body class="tech-grid min-h-screen flex flex-col justify-between selection:bg-zinc-900 selection:text-white relative">
+
+
 
     <!-- Fare Takip Eden Işık (Cursor Spotlight) -->
+
     <div class="cursor-spotlight" id="spotlight"></div>
 
-    <!-- Üst Okuma İlerleme Çubuğu -->
-    <div class="fixed top-0 left-0 right-0 h-0.5 bg-zinc-200 dark:bg-zinc-800 z-[60]">
-        <div id="scroll-progress" class="h-full bg-zinc-900 dark:bg-white w-0 transition-all duration-75"></div>
+
+
+    <!-- Üst Okuma İlerleme Çubuğu (Scroll Progress Bar) -->
+
+    <div class="fixed top-0 left-0 right-0 h-0.5 bg-zinc-200 z-[60]">
+
+        <div id="scroll-progress" class="h-full bg-zinc-900 w-0 transition-all duration-75"></div>
+
     </div>
+
+
 
     <!-- Navbar -->
-    <header class="sticky top-0 z-50 bg-white/85 dark:bg-zinc-900/85 backdrop-blur-md border-b border-zinc-200/90 dark:border-zinc-800 transition-colors duration-300">
+
+    <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-zinc-200/90">
+
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+
             <a href="#" class="font-mono font-semibold text-base sm:text-lg tracking-tight flex items-center gap-2.5 group">
-                <span class="w-7 h-7 bg-zinc-900 dark:bg-white dark:text-zinc-900 text-white rounded-md flex items-center justify-center text-xs font-bold group-hover:bg-sky-600 transition-colors">MK</span>
+
+                <span class="w-7 h-7 bg-zinc-900 text-white rounded-md flex items-center justify-center text-xs font-bold group-hover:bg-sky-600 transition-colors">MK</span>
+
                 <span>MURAT KESKİN</span>
+
             </a>
 
-            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-300">
-                <a href="#about" class="hover:text-zinc-900 dark:hover:text-white transition-colors" data-i18n="nav_about">Hakkımda</a>
-                <a href="#experience" class="hover:text-zinc-900 dark:hover:text-white transition-colors" data-i18n="nav_exp">Deneyim</a>
-                <a href="#projects" class="hover:text-zinc-900 dark:hover:text-white transition-colors" data-i18n="nav_projects">Projeler</a>
-                <a href="#skills" class="hover:text-zinc-900 dark:hover:text-white transition-colors" data-i18n="nav_skills">Yetkinlikler</a>
-                <a href="#certifications" class="hover:text-zinc-900 dark:hover:text-white transition-colors" data-i18n="nav_certs">Sertifikalar</a>
-                <a href="#contact" class="hover:text-zinc-900 dark:hover:text-white transition-colors" data-i18n="nav_contact">İletişim</a>
+
+
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-600">
+
+                <a href="#about" class="hover:text-zinc-900 transition-colors" data-i18n="nav_about">Hakkımda</a>
+
+                <a href="#experience" class="hover:text-zinc-900 transition-colors" data-i18n="nav_exp">Deneyim</a>
+
+                <a href="#projects" class="hover:text-zinc-900 transition-colors" data-i18n="nav_projects">Projeler</a>
+
+                <a href="#skills" class="hover:text-zinc-900 transition-colors" data-i18n="nav_skills">Yetkinlikler</a>
+
+                <a href="#certifications" class="hover:text-zinc-900 transition-colors" data-i18n="nav_certs">Sertifikalar</a>
+
+                <a href="#contact" class="hover:text-zinc-900 transition-colors" data-i18n="nav_contact">İletişim</a>
+
             </nav>
 
+
+
             <div class="flex items-center gap-2.5">
-                <!-- Gece / Gündüz Modu Butonu -->
-                <button onclick="toggleTheme()" aria-label="Toggle Theme" class="w-9 h-9 flex items-center justify-center rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 hover:border-zinc-900 dark:hover:border-white transition-all shadow-2xs" title="Tema Değiştir">
-                    <i id="theme-icon" data-lucide="moon" class="w-4 h-4"></i>
-                </button>
 
                 <!-- Dil Değiştirici (TR / EN) -->
-                <button id="lang-toggle" onclick="toggleLanguage()" class="font-mono text-xs font-semibold px-3 py-2 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 hover:border-zinc-900 dark:hover:border-white transition-all flex items-center gap-1.5 shadow-2xs">
-                    <i data-lucide="globe" class="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300"></i>
+
+                <button id="lang-toggle" onclick="toggleLanguage()" class="font-mono text-xs font-semibold px-3 py-2 rounded-md border border-zinc-200 bg-white hover:border-zinc-900 transition-all flex items-center gap-1.5 shadow-2xs">
+
+                    <i data-lucide="globe" class="w-3.5 h-3.5 text-zinc-700"></i>
+
                     <span id="lang-label">EN</span>
+
                 </button>
+
+
 
                 <!-- CV İndir Butonu -->
-                <a href="./Murat_Keskin_CV.pdf" download class="hidden sm:inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-medium px-3.5 py-2 rounded-md hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all shadow-2xs">
+
+                <a href="./Murat_Keskin_CV.pdf" download class="hidden sm:inline-flex items-center gap-2 bg-zinc-900 text-white text-xs font-medium px-3.5 py-2 rounded-md hover:bg-zinc-800 transition-all shadow-2xs">
+
                     <i data-lucide="download" class="w-3.5 h-3.5"></i>
+
                     <span data-i18n="btn_cv_short">CV İndir</span>
+
                 </a>
+
+
 
                 <!-- Mobil Menü Butonu -->
-                <button onclick="toggleMobileMenu()" aria-label="Menu" class="md:hidden w-9 h-9 flex items-center justify-center rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200">
+
+                <button onclick="toggleMobileMenu()" aria-label="Menu" class="md:hidden w-9 h-9 flex items-center justify-center rounded-md border border-zinc-200 bg-white text-zinc-700">
+
                     <i data-lucide="menu" class="w-4 h-4"></i>
+
                 </button>
+
             </div>
+
         </div>
+
+
 
         <!-- Mobil Açılır Menü -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 space-y-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            <a href="#about" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900 dark:hover:text-white" data-i18n="nav_about">Hakkımda</a>
-            <a href="#experience" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900 dark:hover:text-white" data-i18n="nav_exp">Deneyim</a>
-            <a href="#projects" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900 dark:hover:text-white" data-i18n="nav_projects">Projeler</a>
-            <a href="#skills" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900 dark:hover:text-white" data-i18n="nav_skills">Yetkinlikler</a>
-            <a href="#certifications" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900 dark:hover:text-white" data-i18n="nav_certs">Sertifikalar</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900 dark:hover:text-white" data-i18n="nav_contact">İletişim</a>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-zinc-200 px-6 py-4 space-y-3 text-sm font-medium text-zinc-700">
+
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900" data-i18n="nav_about">Hakkımda</a>
+
+            <a href="#experience" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900" data-i18n="nav_exp">Deneyim</a>
+
+            <a href="#projects" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900" data-i18n="nav_projects">Projeler</a>
+
+            <a href="#skills" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900" data-i18n="nav_skills">Yetkinlikler</a>
+
+            <a href="#certifications" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900" data-i18n="nav_certs">Sertifikalar</a>
+
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-1 hover:text-zinc-900" data-i18n="nav_contact">İletişim</a>
+
         </div>
+
     </header>
 
-    <!-- Sağ Alt Canlı CAD Koordinat HUD Barı -->
-    <div class="hidden lg:flex fixed bottom-5 right-5 z-40 items-center gap-3 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-700 px-3.5 py-2 rounded-lg shadow-sm font-mono text-[11px] text-zinc-600 dark:text-zinc-300 select-none">
-        <span class="flex items-center gap-1.5 text-zinc-900 dark:text-white font-semibold">
+
+
+    <!-- Sağ Alt Canlı CAD Koordinat HUD Barı (Masaüstü) -->
+
+    <div class="hidden lg:flex fixed bottom-5 right-5 z-40 items-center gap-3 bg-white/90 backdrop-blur-md border border-zinc-200/90 px-3.5 py-2 rounded-lg shadow-sm font-mono text-[11px] text-zinc-600 select-none">
+
+        <span class="flex items-center gap-1.5 text-zinc-900 font-semibold">
+
             <span class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
+
             CAD-VIEWPORT
+
         </span>
-        <span class="text-zinc-300 dark:text-zinc-700">|</span>
-        <span id="cad-coords" class="w-28 text-zinc-700 dark:text-zinc-300">X: 0000 Y: 0000</span>
-        <span class="text-zinc-300 dark:text-zinc-700">|</span>
-        <span class="text-zinc-500 dark:text-zinc-400">UNIT: MM (ISO)</span>
-        <span class="text-zinc-300 dark:text-zinc-700">|</span>
-        <span class="px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-800 rounded text-zinc-800 dark:text-zinc-200 font-medium">SCALE 1:1</span>
+
+        <span class="text-zinc-300">|</span>
+
+        <span id="cad-coords" class="w-28 text-zinc-700">X: 0000 Y: 0000</span>
+
+        <span class="text-zinc-300">|</span>
+
+        <span class="text-zinc-500">UNIT: MM (ISO)</span>
+
+        <span class="text-zinc-300">|</span>
+
+        <span class="px-1.5 py-0.5 bg-zinc-100 rounded text-zinc-800 font-medium">SCALE 1:1</span>
+
     </div>
+
+
 
     <!-- Kopyalama Bildirimi (Toast Notification) -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300 bg-zinc-900 dark:bg-white dark:text-zinc-900 text-white font-mono text-xs px-4 py-2.5 rounded-lg shadow-lg flex items-center gap-2">
-        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 dark:text-emerald-600"></i>
+
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300 bg-zinc-900 text-white font-mono text-xs px-4 py-2.5 rounded-lg shadow-lg flex items-center gap-2">
+
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+
         <span id="toast-text">E-posta adresi panoya kopyalandı!</span>
+
     </div>
 
+
+
     <!-- Ana İçerik -->
+
     <main class="max-w-5xl mx-auto px-6 py-12 md:py-20 space-y-28 relative z-10">
 
+
+
         <!-- HERO BÖLÜMÜ -->
+
         <section id="about" class="pt-2 reveal active">
+
             <!-- Üst Durum Rozetleri -->
+
             <div class="flex flex-wrap items-center gap-2.5 mb-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-mono text-zinc-800 dark:text-zinc-200 shadow-2xs">
+
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-zinc-200 text-xs font-mono text-zinc-800 shadow-2xs">
+
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+
                     <span data-i18n="hero_badge">CAD / CAE / PDM & Mühendislik Otomasyonu</span>
+
                 </div>
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-mono text-zinc-500 dark:text-zinc-400 shadow-2xs">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300"></i>
+
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-zinc-200 text-xs font-mono text-zinc-500 shadow-2xs">
+
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-zinc-700"></i>
+
                     <span>İstanbul / Kartal, TR</span>
+
                 </div>
-                <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/50 border border-sky-200 dark:border-sky-800 text-xs font-mono text-sky-800 dark:text-sky-300">
+
+                <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-xs font-mono text-sky-800">
+
                     <i data-lucide="award" class="w-3.5 h-3.5"></i>
+
                     <span>CSWA Certified</span>
+
                 </div>
+
             </div>
 
-            <!-- İsim ve Dinamik Daktilo Unvan Alanı -->
+
+
+            <!-- İsim ve Dinamik Başlık -->
+
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+
                 <div>
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.08]">
+
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.08]">
+
                         Murat Keskin
+
                     </h1>
-                    <!-- Video İstediğiniz Dinamik Typewriter Unvan Alanı -->
-                    <div class="mt-3 text-lg sm:text-2xl font-semibold text-zinc-700 dark:text-zinc-200 tracking-tight flex items-center min-h-[36px]">
-                        <span id="typewriter-text"></span><span class="typed-cursor text-zinc-900 dark:text-white"></span>
-                    </div>
+
+                    <p class="mt-3 text-lg sm:text-2xl font-semibold text-zinc-700 tracking-tight flex flex-wrap items-center gap-2">
+
+                        <span data-i18n="hero_title">Mekatronik Mühendisi | CAD/CAE & PDM Application Engineer</span>
+
+                    </p>
+
                 </div>
+
+
 
                 <!-- Canlı Teknik Parametre Rozeti -->
-                <div class="hidden md:flex flex-col items-end font-mono text-xs text-zinc-400 border-l-2 border-zinc-200 dark:border-zinc-800 pl-4 py-1">
-                    <span class="text-zinc-800 dark:text-zinc-200 font-semibold">SYS_STATUS: ONLINE</span>
+
+                <div class="hidden md:flex flex-col items-end font-mono text-xs text-zinc-400 border-l-2 border-zinc-200 pl-4 py-1">
+
+                    <span class="text-zinc-800 font-semibold">SYS_STATUS: ONLINE</span>
+
                     <span>DFM • FEA • CFD • PLM</span>
+
                     <span>TOLERANCE: ±0.01 mm</span>
+
                 </div>
+
             </div>
+
+
 
             <!-- Hakkımda Özeti -->
-            <p class="mt-6 text-base sm:text-lg text-zinc-600 dark:text-zinc-300 max-w-3xl leading-relaxed" data-i18n="hero_bio">
+
+            <p class="mt-6 text-base sm:text-lg text-zinc-600 max-w-3xl leading-relaxed" data-i18n="hero_bio">
+
                 Marmara Üniversitesi Mekatronik Mühendisliği geçmişimi, TEKYAZ Teknolojik Yazılımlar bünyesindeki SOLIDWORKS CAD/CAE, PDM ve 3DEXPERIENCE (PLM) tecrübemle birleştiriyorum. Statik, frekans, burkulma, yorulma ve akış (FEA/CFD) simülasyonları, sac metal/kalıp/yüzey modelleme, İmalata Uygun Tasarım (DFM), otomotiv kalite yönetim standartları (IATF 16949, APQP, PPAP, FMEA) ve mühendislik süreçlerini hızlandıran yazılım otomasyonları üzerine çalışıyorum.
+
             </p>
 
+
+
             <!-- Aksiyon Butonları ve Eşit Boyutlu Sosyal İkonlar -->
+
             <div class="mt-8 flex flex-wrap items-center gap-3.5">
-                <a href="./Murat_Keskin_CV.pdf" download class="inline-flex items-center gap-2.5 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-sm font-medium px-6 py-3 rounded-lg hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all shadow-sm hover:-translate-y-0.5">
+
+                <a href="./Murat_Keskin_CV.pdf" download class="inline-flex items-center gap-2.5 bg-zinc-900 text-white text-sm font-medium px-6 py-3 rounded-lg hover:bg-zinc-800 transition-all shadow-sm hover:-translate-y-0.5">
+
                     <i data-lucide="file-down" class="w-4 h-4"></i>
+
                     <span data-i18n="btn_cv_full">CV İndir (PDF)</span>
+
                 </a>
-                <a href="#projects" class="inline-flex items-center gap-2 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700 text-sm font-medium px-6 py-3 rounded-lg hover:border-zinc-900 dark:hover:border-white transition-all hover:-translate-y-0.5">
+
+                <a href="#projects" class="inline-flex items-center gap-2 bg-white text-zinc-900 border border-zinc-200 text-sm font-medium px-6 py-3 rounded-lg hover:border-zinc-900 transition-all hover:-translate-y-0.5">
+
                     <span data-i18n="btn_explore">Portföyü İncele</span>
+
                     <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+
                 </a>
+
                 
-                <!-- Sabit Vektörel Sosyal İkon Kutuları -->
+
+                <!-- Sabit 42x42px Vektörel Sosyal İkon Kutuları -->
+
                 <div class="flex items-center gap-2 sm:ml-auto pt-2 sm:pt-0">
-                    <a href="https://www.linkedin.com/in/murat-keskin-b02428280" target="_blank" rel="noopener" title="LinkedIn" class="w-10 h-10 flex items-center justify-center bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-700 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-900 dark:hover:border-white hover:-translate-y-0.5 transition-all shadow-2xs">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+
+                    <!-- LinkedIn -->
+
+                    <a href="https://www.linkedin.com/in/murat-keskin-b02428280" target="_blank" rel="noopener" title="LinkedIn" class="w-10 h-10 flex items-center justify-center bg-white border border-zinc-200 rounded-lg text-zinc-700 hover:text-zinc-900 hover:border-zinc-900 hover:-translate-y-0.5 transition-all shadow-2xs">
+
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+
+                        </svg>
+
                     </a>
-                    <a href="https://github.com/MuratK54" target="_blank" rel="noopener" title="GitHub (MuratK54)" class="w-10 h-10 flex items-center justify-center bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-700 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-900 dark:hover:border-white hover:-translate-y-0.5 transition-all shadow-2xs">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+
+                    <!-- GitHub -->
+
+                    <a href="https://github.com/MuratK54" target="_blank" rel="noopener" title="GitHub (MuratK54)" class="w-10 h-10 flex items-center justify-center bg-white border border-zinc-200 rounded-lg text-zinc-700 hover:text-zinc-900 hover:border-zinc-900 hover:-translate-y-0.5 transition-all shadow-2xs">
+
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+
+                            <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+
+                        </svg>
+
                     </a>
-                    <a href="https://grabcad.com/murat.keskin-7" target="_blank" rel="noopener" title="GrabCAD (murat.keskin-7)" class="w-10 h-10 flex items-center justify-center bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-800 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-900 dark:hover:border-white hover:-translate-y-0.5 transition-all font-mono text-xs font-bold shadow-2xs">GC</a>
-                    <button onclick="copyEmail()" title="E-Postayı Kopyala: mkeskin23@marun.edu.tr" class="w-10 h-10 flex items-center justify-center bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-700 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-900 dark:hover:border-white hover:-translate-y-0.5 transition-all shadow-2xs"><i data-lucide="mail" class="w-4 h-4"></i></button>
-                    <a href="tel:+905398452334" title="0539 845 23 34" class="w-10 h-10 flex items-center justify-center bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-700 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-900 dark:hover:border-white hover:-translate-y-0.5 transition-all shadow-2xs"><i data-lucide="phone" class="w-4 h-4"></i></a>
+
+                    <!-- GrabCAD -->
+
+                    <a href="https://grabcad.com/murat.keskin-7" target="_blank" rel="noopener" title="GrabCAD (murat.keskin-7)" class="w-10 h-10 flex items-center justify-center bg-white border border-zinc-200 rounded-lg text-zinc-800 hover:text-zinc-900 hover:border-zinc-900 hover:-translate-y-0.5 transition-all font-mono text-xs font-bold shadow-2xs">
+
+                        GC
+
+                    </a>
+
+                    <!-- E-Posta Kopyala -->
+
+                    <button onclick="copyEmail()" title="E-Postayı Kopyala: mkeskin23@marun.edu.tr" class="w-10 h-10 flex items-center justify-center bg-white border border-zinc-200 rounded-lg text-zinc-700 hover:text-zinc-900 hover:border-zinc-900 hover:-translate-y-0.5 transition-all shadow-2xs">
+
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+
+                    </button>
+
+                    <!-- Telefon -->
+
+                    <a href="tel:+905398452334" title="0539 845 23 34" class="w-10 h-10 flex items-center justify-center bg-white border border-zinc-200 rounded-lg text-zinc-700 hover:text-zinc-900 hover:border-zinc-900 hover:-translate-y-0.5 transition-all shadow-2xs">
+
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+
+                    </a>
+
                 </div>
+
             </div>
+
+
 
             <!-- 4'lü Mühendislik Metrik Barı -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 mt-12 pt-10 border-t border-zinc-200 dark:border-zinc-800">
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200/90 dark:border-zinc-700 rounded-xl p-4 tilt-card">
-                    <div class="flex items-center justify-between"><span class="font-mono text-[11px] uppercase text-zinc-400" data-i18n="metric_1_label">SERTİFİKALI UZMANLIK</span><i data-lucide="check-circle" class="w-3.5 h-3.5 text-sky-600"></i></div>
-                    <div class="font-bold text-base text-zinc-900 dark:text-white mt-1.5">CSWA & PLM / PDM</div>
-                    <div class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5" data-i18n="metric_1_sub">Dassault Systèmes & TEKYAZ</div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 mt-12 pt-10 border-t border-zinc-200">
+
+                <div class="bg-white border border-zinc-200/90 rounded-xl p-4 tilt-card">
+
+                    <div class="flex items-center justify-between">
+
+                        <span class="font-mono text-[11px] uppercase text-zinc-400" data-i18n="metric_1_label">SERTİFİKALI UZMANLIK</span>
+
+                        <i data-lucide="check-circle" class="w-3.5 h-3.5 text-sky-600"></i>
+
+                    </div>
+
+                    <div class="font-bold text-base text-zinc-900 mt-1.5">CSWA & PLM / PDM</div>
+
+                    <div class="text-xs text-zinc-500 mt-0.5" data-i18n="metric_1_sub">Dassault Systèmes & TEKYAZ</div>
+
                 </div>
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200/90 dark:border-zinc-700 rounded-xl p-4 tilt-card">
-                    <div class="flex items-center justify-between"><span class="font-mono text-[11px] uppercase text-zinc-400" data-i18n="metric_2_label">TASARIM & DOĞRULAMA</span><i data-lucide="layers" class="w-3.5 h-3.5 text-sky-600"></i></div>
-                    <div class="font-bold text-base text-zinc-900 dark:text-white mt-1.5">CAD / FEA / CFD</div>
-                    <div class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5" data-i18n="metric_2_sub">DFM, GD&T, Sac Metal & Kalıp</div>
+
+                <div class="bg-white border border-zinc-200/90 rounded-xl p-4 tilt-card">
+
+                    <div class="flex items-center justify-between">
+
+                        <span class="font-mono text-[11px] uppercase text-zinc-400" data-i18n="metric_2_label">TASARIM & DOĞRULAMA</span>
+
+                        <i data-lucide="layers" class="w-3.5 h-3.5 text-sky-600"></i>
+
+                    </div>
+
+                    <div class="font-bold text-base text-zinc-900 mt-1.5">CAD / FEA / CFD</div>
+
+                    <div class="text-xs text-zinc-500 mt-0.5" data-i18n="metric_2_sub">DFM, GD&T, Sac Metal & Kalıp</div>
+
                 </div>
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200/90 dark:border-zinc-700 rounded-xl p-4 tilt-card">
-                    <div class="flex items-center justify-between"><span class="font-mono text-[11px] uppercase text-zinc-400" data-i18n="metric_3_label">KALİTE STANDARTLARI</span><i data-lucide="shield-check" class="w-3.5 h-3.5 text-sky-600"></i></div>
-                    <div class="font-bold text-base text-zinc-900 dark:text-white mt-1.5">IATF 16949</div>
-                    <div class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">APQP • PPAP • FMEA • SPC</div>
+
+                <div class="bg-white border border-zinc-200/90 rounded-xl p-4 tilt-card">
+
+                    <div class="flex items-center justify-between">
+
+                        <span class="font-mono text-[11px] uppercase text-zinc-400" data-i18n="metric_3_label">KALİTE STANDARTLARI</span>
+
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-sky-600"></i>
+
+                    </div>
+
+                    <div class="font-bold text-base text-zinc-900 mt-1.5">IATF 16949</div>
+
+                    <div class="text-xs text-zinc-500 mt-0.5">APQP • PPAP • FMEA • SPC</div>
+
                 </div>
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200/90 dark:border-zinc-700 rounded-xl p-4 tilt-card">
-                    <div class="flex items-center justify-between"><span class="font-mono text-[11px] uppercase text-zinc-400" data-i18n="metric_4_label">MÜHENDİSLİK OTOMASYONU</span><i data-lucide="cpu" class="w-3.5 h-3.5 text-sky-600"></i></div>
-                    <div class="font-bold text-base text-zinc-900 dark:text-white mt-1.5">Python & C# / MATLAB</div>
-                    <div class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5" data-i18n="metric_4_sub">DXF Analiz & Veri İşleme</div>
+
+                <div class="bg-white border border-zinc-200/90 rounded-xl p-4 tilt-card">
+
+                    <div class="flex items-center justify-between">
+
+                        <span class="font-mono text-[11px] uppercase text-zinc-400" data-i18n="metric_4_label">MÜHENDİSLİK OTOMASYONU</span>
+
+                        <i data-lucide="cpu" class="w-3.5 h-3.5 text-sky-600"></i>
+
+                    </div>
+
+                    <div class="font-bold text-base text-zinc-900 mt-1.5">Python & C# / MATLAB</div>
+
+                    <div class="text-xs text-zinc-500 mt-0.5" data-i18n="metric_4_sub">DXF Analiz & Veri İşleme</div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- 01 / PROFESYONEL DENEYİM -->
+
+
+        <!-- 01 / PROFESYONEL DENEYİM (TIMELINE) -->
+
         <section id="experience" class="scroll-mt-24 reveal">
-            <div class="mb-10 border-b border-zinc-200 dark:border-zinc-800 pb-6 flex items-end justify-between">
+
+            <div class="mb-10 border-b border-zinc-200 pb-6 flex items-end justify-between">
+
                 <div>
+
                     <span class="font-mono text-xs uppercase tracking-widest text-sky-600 font-semibold">01 / CAREER TIMELINE</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mt-1 text-zinc-900 dark:text-white" data-i18n="sec_exp_title">Profesyonel Deneyim</h2>
+
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mt-1" data-i18n="sec_exp_title">Profesyonel Deneyim</h2>
+
                 </div>
+
                 <span class="hidden sm:inline-block font-mono text-xs text-zinc-400">CAD • PDM • DFM • QC</span>
+
             </div>
 
-            <div class="relative pl-6 sm:pl-8 border-l-2 border-zinc-200 dark:border-zinc-800 space-y-8">
+
+
+            <!-- Dikey Mühendislik Zaman Çizelgesi -->
+
+            <div class="relative pl-6 sm:pl-8 border-l-2 border-zinc-200 space-y-8">
+
+                
+
                 <!-- Exp 1: TEKYAZ -->
+
                 <div class="relative group">
-                    <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 dark:bg-white border-4 border-white dark:border-zinc-900 ring-2 ring-zinc-900 dark:ring-white transition-transform group-hover:scale-125"></span>
-                    <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-6 tilt-card">
+
+                    <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-4 border-white ring-2 ring-zinc-900 transition-transform group-hover:scale-125"></span>
+
+                    <div class="bg-white border border-zinc-200 rounded-xl p-6 tilt-card">
+
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+
                             <div>
-                                <h3 class="font-bold text-lg text-zinc-900 dark:text-white" data-i18n="exp_1_role">CAD/CAE & PDM Application Engineer (İYE / Stajyer)</h3>
-                                <p class="text-sm font-medium text-zinc-600 dark:text-zinc-400 mt-0.5">TEKYAZ Teknolojik Yazılımlar • İstanbul</p>
+
+                                <div class="flex items-center gap-2">
+
+                                    <h3 class="font-bold text-lg text-zinc-900" data-i18n="exp_1_role">CAD/CAE & PDM Application Engineer (İYE / Stajyer)</h3>
+
+                                </div>
+
+                                <p class="text-sm font-medium text-zinc-600 mt-0.5">TEKYAZ Teknolojik Yazılımlar • İstanbul</p>
+
                             </div>
-                            <span class="font-mono text-xs px-3 py-1 bg-zinc-900 dark:bg-white dark:text-zinc-900 text-white rounded-full w-fit shrink-0" data-i18n="exp_1_date">Temmuz 2026 — Devam Ediyor</span>
+
+                            <span class="font-mono text-xs px-3 py-1 bg-zinc-900 text-white rounded-full w-fit shrink-0" data-i18n="exp_1_date">Temmuz 2026 — Devam Ediyor</span>
+
                         </div>
-                        <ul class="text-sm text-zinc-600 dark:text-zinc-300 space-y-1.5 list-disc list-inside leading-relaxed">
+
+                        <ul class="text-sm text-zinc-600 space-y-1.5 list-disc list-inside leading-relaxed">
+
                             <li data-i18n="exp_1_b1">SOLIDWORKS ve SOLIDWORKS PDM süreçlerinde kurumsal kullanıcılara doğrudan teknik destek ve uygulama mühendisliği çözümleri sunulması.</li>
+
                             <li data-i18n="exp_1_b2">SOLIDWORKS Kalıp Tasarımı, Profil Tasarımı ve PDM Kullanıcı süreçleriyle CAD veri yönetimi iş akışlarının yürütülmesi.</li>
+
                             <li data-i18n="exp_1_b3">3DEXPERIENCE platformu üzerinde Temel Veri Yönetimi sertifikasyonu ile PLM süreçlerine katkı sağlanması.</li>
+
                         </ul>
+
                     </div>
+
                 </div>
+
+
 
                 <!-- Exp 2: Andasis (2025) -->
+
                 <div class="relative group">
-                    <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-zinc-900 border-4 border-zinc-400 dark:border-zinc-600 group-hover:border-zinc-900 transition-colors"></span>
-                    <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-6 tilt-card">
+
+                    <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-zinc-400 group-hover:border-zinc-900 transition-colors"></span>
+
+                    <div class="bg-white border border-zinc-200 rounded-xl p-6 tilt-card">
+
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+
                             <div>
-                                <h3 class="font-bold text-lg text-zinc-900 dark:text-white" data-i18n="exp_2_role">Mekanik Tasarım Mühendisi Stajyeri</h3>
-                                <p class="text-sm font-medium text-zinc-600 dark:text-zinc-400 mt-0.5">Andasis • İstanbul</p>
+
+                                <h3 class="font-bold text-lg text-zinc-900" data-i18n="exp_2_role">Mekanik Tasarım Mühendisi Stajyeri</h3>
+
+                                <p class="text-sm font-medium text-zinc-600 mt-0.5">Andasis • İstanbul</p>
+
                             </div>
-                            <span class="font-mono text-xs px-3 py-1 bg-zinc-100 dark:bg-zinc-700 border border-zinc-200 dark:border-zinc-600 rounded-full text-zinc-700 dark:text-zinc-200 w-fit shrink-0" data-i18n="exp_2_date">Temmuz 2025 — Eylül 2025</span>
+
+                            <span class="font-mono text-xs px-3 py-1 bg-zinc-100 border border-zinc-200 rounded-full text-zinc-700 w-fit shrink-0" data-i18n="exp_2_date">Temmuz 2025 — Eylül 2025</span>
+
                         </div>
-                        <ul class="text-sm text-zinc-600 dark:text-zinc-300 space-y-1.5 list-disc list-inside leading-relaxed">
+
+                        <ul class="text-sm text-zinc-600 space-y-1.5 list-disc list-inside leading-relaxed">
+
                             <li data-i18n="exp_2_b1">SOLIDWORKS kullanarak endüstriyel elektronik ve modem donanımları için 3D modelleme ve CAD tasarım süreçlerinin yürütülmesi.</li>
+
                             <li data-i18n="exp_2_b2">Sac metal ve yüzey tasarımı çalışmalarında üretilebilirlik odaklı tasarım (DFM) prensiplerinin uygulanması.</li>
+
                             <li data-i18n="exp_2_b3">SOLIDWORKS Simulation ile mekanik doğrulama ve mukavemet analizi çalışmalarına destek verilmesi.</li>
+
                         </ul>
+
                     </div>
+
                 </div>
+
+
 
                 <!-- Exp 3: Andasis (2021) -->
+
                 <div class="relative group">
-                    <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-zinc-900 border-4 border-zinc-400 dark:border-zinc-600 group-hover:border-zinc-900 transition-colors"></span>
-                    <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-6 tilt-card">
+
+                    <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white border-4 border-zinc-400 group-hover:border-zinc-900 transition-colors"></span>
+
+                    <div class="bg-white border border-zinc-200 rounded-xl p-6 tilt-card">
+
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+
                             <div>
-                                <h3 class="font-bold text-lg text-zinc-900 dark:text-white" data-i18n="exp_3_role">Üretim Teknisyeni Stajyeri</h3>
-                                <p class="text-sm font-medium text-zinc-600 dark:text-zinc-400 mt-0.5">Andasis • İstanbul</p>
+
+                                <h3 class="font-bold text-lg text-zinc-900" data-i18n="exp_3_role">Üretim Teknisyeni Stajyeri</h3>
+
+                                <p class="text-sm font-medium text-zinc-600 mt-0.5">Andasis • İstanbul</p>
+
                             </div>
-                            <span class="font-mono text-xs px-3 py-1 bg-zinc-100 dark:bg-zinc-700 border border-zinc-200 dark:border-zinc-600 rounded-full text-zinc-700 dark:text-zinc-200 w-fit shrink-0" data-i18n="exp_3_date">Haziran 2021 — Eylül 2021</span>
+
+                            <span class="font-mono text-xs px-3 py-1 bg-zinc-100 border border-zinc-200 rounded-full text-zinc-700 w-fit shrink-0" data-i18n="exp_3_date">Haziran 2021 — Eylül 2021</span>
+
                         </div>
-                        <ul class="text-sm text-zinc-600 dark:text-zinc-300 space-y-1.5 list-disc list-inside leading-relaxed">
+
+                        <ul class="text-sm text-zinc-600 space-y-1.5 list-disc list-inside leading-relaxed">
+
                             <li data-i18n="exp_3_b1">Askeri standartlardaki endüstriyel elektronik cihazların üretim ve montaj süreçlerinde görev alınması.</li>
+
                             <li data-i18n="exp_3_b2">Üretilen ağ ve haberleşme cihazlarının port testlerinin gerçekleştirilerek kalite kontrol süreçlerine katkı sağlanması.</li>
+
                         </ul>
+
                     </div>
+
                 </div>
+
+
+
             </div>
+
         </section>
 
-        <!-- 02 / SEÇİLMİŞ PROJELER & CAD VERİLERİ -->
+
+
+        <!-- 02 / SEÇİLMİŞ PROJELER & CAD PORTFÖYÜ (6 PROJE + İNTERAKTİF MODAL) -->
+
         <section id="projects" class="scroll-mt-24 reveal">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4 border-b border-zinc-200 dark:border-zinc-800 pb-6">
+
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4 border-b border-zinc-200 pb-6">
+
                 <div>
+
                     <span class="font-mono text-xs uppercase tracking-widest text-sky-600 font-semibold">02 / ENGINEERING PORTFOLIO & CAD DATA</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mt-1 text-zinc-900 dark:text-white" data-i18n="sec_projects_title">Seçilmiş Projeler & CAD Verileri</h2>
-                    <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-1" data-i18n="sec_projects_hint">Teknik föyü (Spec Sheet) görüntülemek için proje kartlarına tıklayın.</p>
+
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mt-1" data-i18n="sec_projects_title">Seçilmiş Projeler & CAD Verileri</h2>
+
+                    <p class="text-xs font-mono text-zinc-500 mt-1" data-i18n="sec_projects_hint">Teknik föyü (Spec Sheet) görüntülemek için proje kartlarına tıklayın.</p>
+
                 </div>
+
+
 
                 <!-- Kategori Filtre Butonları -->
+
                 <div class="flex flex-wrap gap-2" id="project-filters">
-                    <button onclick="filterProjects('all')" data-filter="all" class="filter-btn active text-xs font-mono px-3.5 py-2 rounded-md bg-zinc-900 dark:bg-white dark:text-zinc-900 text-white transition-all" data-i18n="filter_all">Tümü (6)</button>
-                    <button onclick="filterProjects('cad-cae')" data-filter="cad-cae" class="filter-btn text-xs font-mono px-3.5 py-2 rounded-md bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:border-zinc-900 dark:hover:border-white transition-all" data-i18n="filter_cad">CAD / CAE & Mekanik (5)</button>
-                    <button onclick="filterProjects('software')" data-filter="software" class="filter-btn text-xs font-mono px-3.5 py-2 rounded-md bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:border-zinc-900 dark:hover:border-white transition-all" data-i18n="filter_sw">Yazılım & Otomasyon (1)</button>
+
+                    <button onclick="filterProjects('all')" data-filter="all" class="filter-btn active text-xs font-mono px-3.5 py-2 rounded-md bg-zinc-900 text-white transition-all" data-i18n="filter_all">Tümü (6)</button>
+
+                    <button onclick="filterProjects('cad-cae')" data-filter="cad-cae" class="filter-btn text-xs font-mono px-3.5 py-2 rounded-md bg-white border border-zinc-200 text-zinc-600 hover:border-zinc-900 transition-all" data-i18n="filter_cad">CAD / CAE & Mekanik (5)</button>
+
+                    <button onclick="filterProjects('software')" data-filter="software" class="filter-btn text-xs font-mono px-3.5 py-2 rounded-md bg-white border border-zinc-200 text-zinc-600 hover:border-zinc-900 transition-all" data-i18n="filter_sw">Yazılım & Otomasyon (1)</button>
+
                 </div>
+
             </div>
 
-            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+
+
+            <!-- Dinamik Proje Izgarası -->
+
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- JavaScript ile doldurulur -->
+
+            </div>
+
         </section>
+
+
 
         <!-- 03 / TEKNİK YETKİNLİKLER -->
+
         <section id="skills" class="scroll-mt-24 reveal">
-            <div class="mb-10 border-b border-zinc-200 dark:border-zinc-800 pb-6">
+
+            <div class="mb-10 border-b border-zinc-200 pb-6">
+
                 <span class="font-mono text-xs uppercase tracking-widest text-sky-600 font-semibold">03 / STACK & COMPETENCIES</span>
-                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mt-1 text-zinc-900 dark:text-white" data-i18n="sec_skills_title">Teknik Yetkinlikler</h2>
+
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mt-1" data-i18n="sec_skills_title">Teknik Yetkinlikler</h2>
+
             </div>
+
+
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-6 tilt-card">
-                    <div class="w-10 h-10 rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 flex items-center justify-center mb-5"><i data-lucide="box" class="w-5 h-5"></i></div>
-                    <h3 class="font-bold text-lg mb-2 text-zinc-900 dark:text-white" data-i18n="skill_cat_1">CAD & CAE Tasarım / Analiz</h3>
-                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-5 leading-relaxed" data-i18n="skill_desc_1">3B parametrik modelleme, sac metal, kalıp/yüzey tasarımı, FEA (statik/frekans/yorulma/burkulma) ve CFD.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-600">SOLIDWORKS</span>
-                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-600">Simulation</span>
-                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-600">Fusion 360</span>
-                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-600">ANSYS</span>
+
+                <!-- Grup 1: CAD & CAE -->
+
+                <div class="bg-white border border-zinc-200 rounded-xl p-6 tilt-card">
+
+                    <div class="w-10 h-10 rounded-lg bg-zinc-900 text-white flex items-center justify-center mb-5">
+
+                        <i data-lucide="box" class="w-5 h-5"></i>
+
                     </div>
+
+                    <h3 class="font-bold text-lg mb-2" data-i18n="skill_cat_1">CAD & CAE Tasarım / Analiz</h3>
+
+                    <p class="text-sm text-zinc-500 mb-5 leading-relaxed" data-i18n="skill_desc_1">3B parametrik modelleme, sac metal, kalıp/yüzey tasarımı, FEA (statik/frekans/yorulma/burkulma) ve CFD.</p>
+
+                    <div class="flex flex-wrap gap-2">
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">SOLIDWORKS</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">SOLIDWORKS Simulation</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">Fusion 360</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">ANSYS</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">Solid Edge</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">DFM & GD&T</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">Sac Metal & Kalıp</span>
+
+                    </div>
+
                 </div>
 
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-6 tilt-card">
-                    <div class="w-10 h-10 rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 flex items-center justify-center mb-5"><i data-lucide="database" class="w-5 h-5"></i></div>
-                    <h3 class="font-bold text-lg mb-2 text-zinc-900 dark:text-white" data-i18n="skill_cat_2">PDM / PLM & Kalite Yönetimi</h3>
-                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-5 leading-relaxed" data-i18n="skill_desc_2">Ürün veri yönetimi, revizyon/iş akışı kontrolü, otomotiv kalite yönetim standartları ve yalın üretim.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-600">SOLIDWORKS PDM</span>
-                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-600">3DEXPERIENCE</span>
-                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-600">IATF 16949</span>
+
+
+                <!-- Grup 2: PDM, PLM & Kalite -->
+
+                <div class="bg-white border border-zinc-200 rounded-xl p-6 tilt-card">
+
+                    <div class="w-10 h-10 rounded-lg bg-zinc-900 text-white flex items-center justify-center mb-5">
+
+                        <i data-lucide="database" class="w-5 h-5"></i>
+
                     </div>
+
+                    <h3 class="font-bold text-lg mb-2" data-i18n="skill_cat_2">PDM / PLM & Kalite Yönetimi</h3>
+
+                    <p class="text-sm text-zinc-500 mb-5 leading-relaxed" data-i18n="skill_desc_2">Ürün veri yönetimi, revizyon/iş akışı kontrolü, otomotiv kalite yönetim standartları ve yalın üretim.</p>
+
+                    <div class="flex flex-wrap gap-2">
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">SOLIDWORKS PDM</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">3DEXPERIENCE</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">IATF 16949</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">APQP & PPAP</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">FMEA</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">SPC & MSA</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">Kaizen / Yalın Üretim</span>
+
+                    </div>
+
                 </div>
 
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-6 tilt-card">
-                    <div class="w-10 h-10 rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 flex items-center justify-center mb-5"><i data-lucide="terminal" class="w-5 h-5"></i></div>
-                    <h3 class="font-bold text-lg mb-2 text-zinc-900 dark:text-white" data-i18n="skill_cat_3">Yazılım & Otomasyon</h3>
-                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-5 leading-relaxed" data-i18n="skill_desc_3">CAD/PDM otomasyon araçları, DXF analiz motorları, veri analizi, yapay zeka ve modern web geliştirme.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-600">Python</span>
-                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-600">C# / C</span>
-                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded border border-zinc-200 dark:border-zinc-600">MATLAB</span>
+
+
+                <!-- Grup 3: Yazılım & Otomasyon -->
+
+                <div class="bg-white border border-zinc-200 rounded-xl p-6 tilt-card">
+
+                    <div class="w-10 h-10 rounded-lg bg-zinc-900 text-white flex items-center justify-center mb-5">
+
+                        <i data-lucide="terminal" class="w-5 h-5"></i>
+
                     </div>
+
+                    <h3 class="font-bold text-lg mb-2" data-i18n="skill_cat_3">Yazılım & Otomasyon</h3>
+
+                    <p class="text-sm text-zinc-500 mb-5 leading-relaxed" data-i18n="skill_desc_3">CAD/PDM otomasyon araçları, DXF analiz motorları, veri analizi, yapay zeka ve modern web geliştirme.</p>
+
+                    <div class="flex flex-wrap gap-2">
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">Python</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">C# / C</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">MATLAB</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">Next.js & Tailwind</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">ezdxf / Pandas</span>
+
+                        <span class="font-mono text-xs px-2.5 py-1 bg-zinc-100 text-zinc-800 rounded border border-zinc-200">Veri Analizi & AI</span>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </section>
+
+
 
         <!-- 04 / SERTİFİKALAR & EĞİTİM -->
+
         <section id="certifications" class="scroll-mt-24 reveal">
-            <div class="mb-10 border-b border-zinc-200 dark:border-zinc-800 pb-6">
+
+            <div class="mb-10 border-b border-zinc-200 pb-6">
+
                 <span class="font-mono text-xs uppercase tracking-widest text-sky-600 font-semibold">04 / CREDENTIALS & EDUCATION</span>
-                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mt-1 text-zinc-900 dark:text-white" data-i18n="sec_certs_title">Sertifikalar & Eğitim</h2>
+
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mt-1" data-i18n="sec_certs_title">Sertifikalar & Eğitim</h2>
+
             </div>
+
+
+
+            <!-- Eğitim Kartları -->
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div class="bg-zinc-900 dark:bg-zinc-800 text-white rounded-xl p-6 flex items-start gap-4 tilt-card">
-                    <div class="p-2.5 bg-zinc-800 dark:bg-zinc-700 rounded-lg text-white mt-0.5"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div>
-                    <div>
-                        <span class="font-mono text-xs text-zinc-400">2023 — 2027</span>
-                        <h3 class="font-semibold text-base mt-0.5" data-i18n="edu_uni">Marmara Üniversitesi</h3>
-                        <p class="text-sm text-zinc-300 mt-1" data-i18n="edu_dept">Mekatronik, Robotik ve Otomasyon Mühendisliği (Lisans)</p>
-                        <span class="inline-block font-mono text-xs text-zinc-400 mt-2" data-i18n="edu_sub">Odak: Ürün Tasarımı, CAD/CAM, Mekanik Analiz</span>
+
+                <div class="bg-zinc-900 text-white rounded-xl p-6 flex items-start gap-4 tilt-card">
+
+                    <div class="p-2.5 bg-zinc-800 rounded-lg text-white mt-0.5">
+
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+
                     </div>
+
+                    <div>
+
+                        <span class="font-mono text-xs text-zinc-400">2023 — 2027</span>
+
+                        <h3 class="font-semibold text-base mt-0.5" data-i18n="edu_uni">Marmara Üniversitesi</h3>
+
+                        <p class="text-sm text-zinc-300 mt-1" data-i18n="edu_dept">Mekatronik, Robotik ve Otomasyon Mühendisliği (Lisans)</p>
+
+                        <span class="inline-block font-mono text-xs text-zinc-400 mt-2" data-i18n="edu_sub">Odak: Ürün Tasarımı, CAD/CAM, Mekanik Analiz</span>
+
+                    </div>
+
                 </div>
 
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-6 flex items-start gap-4 tilt-card">
-                    <div class="p-2.5 bg-zinc-100 dark:bg-zinc-700 rounded-lg text-zinc-900 dark:text-white mt-0.5"><i data-lucide="school" class="w-5 h-5"></i></div>
-                    <div>
-                        <span class="font-mono text-xs text-zinc-400">2018 — 2022</span>
-                        <h3 class="font-semibold text-base mt-0.5 text-zinc-900 dark:text-white" data-i18n="edu_hs">Pendik Türk Telekom Anadolu Teknik Lisesi</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1" data-i18n="edu_hs_dept">Bilişim Teknolojileri Bölümü</p>
-                        <span class="inline-block font-mono text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 px-2 py-0.5 rounded mt-2" data-i18n="edu_hs_rank">Okul İkincisi Olarak Mezun</span>
+
+
+                <div class="bg-white border border-zinc-200 rounded-xl p-6 flex items-start gap-4 tilt-card">
+
+                    <div class="p-2.5 bg-zinc-100 rounded-lg text-zinc-900 mt-0.5">
+
+                        <i data-lucide="school" class="w-5 h-5"></i>
+
                     </div>
+
+                    <div>
+
+                        <span class="font-mono text-xs text-zinc-400">2018 — 2022</span>
+
+                        <h3 class="font-semibold text-base mt-0.5" data-i18n="edu_hs">Pendik Türk Telekom Anadolu Teknik Lisesi</h3>
+
+                        <p class="text-sm text-zinc-600 mt-1" data-i18n="edu_hs_dept">Bilişim Teknolojileri Bölümü</p>
+
+                        <span class="inline-block font-mono text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded mt-2" data-i18n="edu_hs_rank">Okul İkincisi Olarak Mezun</span>
+
+                    </div>
+
                 </div>
+
             </div>
+
+
+
+            <!-- Sertifikalar Izgarası -->
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-5 tilt-card">
-                    <div class="flex items-center justify-between mb-3"><span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 dark:bg-zinc-700 rounded text-zinc-600 dark:text-zinc-300">Dassault Systèmes • 2026</span><i data-lucide="award" class="w-4 h-4 text-sky-600"></i></div>
-                    <h3 class="font-semibold text-sm text-zinc-900 dark:text-white">Certified SOLIDWORKS Design Associate (CSWA)</h3>
-                    <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5" data-i18n="cert_cswa_sub">Uluslararası 3B Modelleme ve Montaj Sertifikası</p>
+
+                <div class="bg-white border border-zinc-200 rounded-xl p-5 tilt-card">
+
+                    <div class="flex items-center justify-between mb-3">
+
+                        <span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 rounded text-zinc-600">Dassault Systèmes • 2026</span>
+
+                        <i data-lucide="award" class="w-4 h-4 text-sky-600"></i>
+
+                    </div>
+
+                    <h3 class="font-semibold text-sm">Certified SOLIDWORKS Design Associate (CSWA)</h3>
+
+                    <p class="text-xs text-zinc-500 mt-1.5" data-i18n="cert_cswa_sub">Uluslararası 3B Modelleme ve Montaj Sertifikası</p>
+
                 </div>
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-5 tilt-card">
-                    <div class="flex items-center justify-between mb-3"><span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 dark:bg-zinc-700 rounded text-zinc-600 dark:text-zinc-300">TEKYAZ • 2026</span><i data-lucide="database" class="w-4 h-4 text-sky-600"></i></div>
-                    <h3 class="font-semibold text-sm text-zinc-900 dark:text-white" data-i18n="cert_tekyaz_pdm">SOLIDWORKS PDM & 3DEXPERIENCE Temel Veri Yönetimi</h3>
-                    <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5" data-i18n="cert_tekyaz_pdm_sub">PDM Kullanıcı, Kalıp Tasarımı ve Profil Tasarımı Sertifikaları</p>
+
+
+
+                <div class="bg-white border border-zinc-200 rounded-xl p-5 tilt-card">
+
+                    <div class="flex items-center justify-between mb-3">
+
+                        <span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 rounded text-zinc-600">TEKYAZ • 2026</span>
+
+                        <i data-lucide="database" class="w-4 h-4 text-sky-600"></i>
+
+                    </div>
+
+                    <h3 class="font-semibold text-sm" data-i18n="cert_tekyaz_pdm">SOLIDWORKS PDM & 3DEXPERIENCE Temel Veri Yönetimi</h3>
+
+                    <p class="text-xs text-zinc-500 mt-1.5" data-i18n="cert_tekyaz_pdm_sub">PDM Kullanıcı, Kalıp Tasarımı ve Profil Tasarımı Sertifikaları</p>
+
                 </div>
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-5 tilt-card">
-                    <div class="flex items-center justify-between mb-3"><span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 dark:bg-zinc-700 rounded text-zinc-600 dark:text-zinc-300">İstanbul Kalite Akademisi • 2026</span><i data-lucide="shield-check" class="w-4 h-4 text-sky-600"></i></div>
-                    <h3 class="font-semibold text-sm text-zinc-900 dark:text-white">IATF 16949 (APQP - PPAP - FMEA - SPC - MSA)</h3>
-                    <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5" data-i18n="cert_quality_sub">Otomotiv Kalite Yönetim Sistemi ve Süreç Doğrulama</p>
+
+
+
+                <div class="bg-white border border-zinc-200 rounded-xl p-5 tilt-card">
+
+                    <div class="flex items-center justify-between mb-3">
+
+                        <span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 rounded text-zinc-600">İstanbul Kalite Akademisi • 2026</span>
+
+                        <i data-lucide="shield-check" class="w-4 h-4 text-sky-600"></i>
+
+                    </div>
+
+                    <h3 class="font-semibold text-sm">IATF 16949 (APQP - PPAP - FMEA - SPC - MSA)</h3>
+
+                    <p class="text-xs text-zinc-500 mt-1.5" data-i18n="cert_quality_sub">Otomotiv Kalite Yönetim Sistemi ve Süreç Doğrulama</p>
+
                 </div>
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-5 tilt-card">
-                    <div class="flex items-center justify-between mb-3"><span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 dark:bg-zinc-700 rounded text-zinc-600 dark:text-zinc-300">TEI (TUSAŞ) • 2026</span><i data-lucide="plane" class="w-4 h-4 text-sky-600"></i></div>
-                    <h3 class="font-semibold text-sm text-zinc-900 dark:text-white" data-i18n="cert_tei_title">TEI Havacılık Motorları Okulu</h3>
-                    <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5" data-i18n="cert_tei_sub">Gaz Türbinli Motor Tasarımı ve Havacılık Mühendisliği</p>
+
+
+
+                <div class="bg-white border border-zinc-200 rounded-xl p-5 tilt-card">
+
+                    <div class="flex items-center justify-between mb-3">
+
+                        <span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 rounded text-zinc-600">TEI (TUSAŞ Motor Sanayii) • 2026</span>
+
+                        <i data-lucide="plane" class="w-4 h-4 text-sky-600"></i>
+
+                    </div>
+
+                    <h3 class="font-semibold text-sm" data-i18n="cert_tei_title">TEI Havacılık Motorları Okulu</h3>
+
+                    <p class="text-xs text-zinc-500 mt-1.5" data-i18n="cert_tei_sub">Gaz Türbinli Motor Tasarımı ve Havacılık Mühendisliği</p>
+
                 </div>
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-5 tilt-card">
-                    <div class="flex items-center justify-between mb-3"><span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 dark:bg-zinc-700 rounded text-zinc-600 dark:text-zinc-300">YÖK • 2026</span><i data-lucide="cpu" class="w-4 h-4 text-sky-600"></i></div>
-                    <h3 class="font-semibold text-sm text-zinc-900 dark:text-white" data-i18n="cert_yok_title">YÖK Veri Analizi Okulu (Yapay Zeka & ML)</h3>
-                    <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5" data-i18n="cert_yok_sub">Yapay Zeka, Makine Öğrenmesi ve Veri Analitiği Modülü</p>
+
+
+
+                <div class="bg-white border border-zinc-200 rounded-xl p-5 tilt-card">
+
+                    <div class="flex items-center justify-between mb-3">
+
+                        <span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 rounded text-zinc-600">Yükseköğretim Kurulu (YÖK) • 2026</span>
+
+                        <i data-lucide="cpu" class="w-4 h-4 text-sky-600"></i>
+
+                    </div>
+
+                    <h3 class="font-semibold text-sm" data-i18n="cert_yok_title">YÖK Veri Analizi Okulu (Yapay Zeka & ML)</h3>
+
+                    <p class="text-xs text-zinc-500 mt-1.5" data-i18n="cert_yok_sub">Yapay Zeka, Makine Öğrenmesi ve Veri Analitiği Modülü</p>
+
                 </div>
-                <div class="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-5 tilt-card">
-                    <div class="flex items-center justify-between mb-3"><span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 dark:bg-zinc-700 rounded text-zinc-600 dark:text-zinc-300">OSD • 2025-2026</span><i data-lucide="settings" class="w-4 h-4 text-sky-600"></i></div>
-                    <h3 class="font-semibold text-sm text-zinc-900 dark:text-white" data-i18n="cert_osd_title">OSD Otomotiv Yaz Kampı, GD&T ve Kaizen</h3>
-                    <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1.5" data-i18n="cert_osd_sub">Geometrik Boyutlandırma/Toleranslandırma ve Sürekli İyileştirme</p>
+
+
+
+                <div class="bg-white border border-zinc-200 rounded-xl p-5 tilt-card">
+
+                    <div class="flex items-center justify-between mb-3">
+
+                        <span class="font-mono text-xs px-2 py-0.5 bg-zinc-100 rounded text-zinc-600">OSD & Teknik Eğitimler • 2025-2026</span>
+
+                        <i data-lucide="settings" class="w-4 h-4 text-sky-600"></i>
+
+                    </div>
+
+                    <h3 class="font-semibold text-sm" data-i18n="cert_osd_title">OSD Otomotiv Yaz Kampı, GD&T ve Kaizen</h3>
+
+                    <p class="text-xs text-zinc-500 mt-1.5" data-i18n="cert_osd_sub">Geometrik Boyutlandırma/Toleranslandırma ve Sürekli İyileştirme</p>
+
                 </div>
+
             </div>
+
         </section>
+
+
 
         <!-- 05 / İLETİŞİM -->
+
         <section id="contact" class="scroll-mt-24 reveal">
-            <div class="bg-white dark:bg-zinc-800/90 border border-zinc-200 dark:border-zinc-700 rounded-2xl p-8 sm:p-12 shadow-2xs">
+
+            <div class="bg-white border border-zinc-200 rounded-2xl p-8 sm:p-12 shadow-2xs">
+
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+
                     <div>
+
                         <span class="font-mono text-xs uppercase tracking-widest text-sky-600 font-semibold">05 / CONTACT</span>
-                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mt-1 text-zinc-900 dark:text-white" data-i18n="sec_contact_title">İletişime Geçin</h2>
-                        <p class="text-zinc-600 dark:text-zinc-300 mt-2 max-w-xl text-sm sm:text-base" data-i18n="sec_contact_desc">
+
+                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mt-1" data-i18n="sec_contact_title">İletişime Geçin</h2>
+
+                        <p class="text-zinc-600 mt-2 max-w-xl text-sm sm:text-base" data-i18n="sec_contact_desc">
+
                             CAD/CAE projeleri, SOLIDWORKS PDM mimarisi, mühendislik otomasyonu veya kariyer fırsatları için aşağıdaki kanallardan bana doğrudan ulaşabilirsiniz.
+
                         </p>
+
                     </div>
-                    <button onclick="copyEmail()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-zinc-900 text-zinc-800 dark:text-zinc-200 font-mono text-xs font-medium transition-all w-fit shrink-0">
+
+                    <button onclick="copyEmail()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-zinc-100 hover:bg-zinc-900 hover:text-white text-zinc-800 font-mono text-xs font-medium transition-all w-fit shrink-0">
+
                         <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+
                         <span data-i18n="btn_copy_email">E-Postayı Kopyala</span>
+
                     </button>
+
                 </div>
+
+
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-8">
-                    <a href="mailto:mkeskin23@marun.edu.tr" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 hover:border-zinc-900 dark:hover:border-white transition-all group bg-zinc-50/50 dark:bg-zinc-800">
-                        <i data-lucide="mail" class="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white shrink-0"></i>
+
+                    <!-- E-Posta -->
+
+                    <a href="mailto:mkeskin23@marun.edu.tr" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 hover:border-zinc-900 transition-all group">
+
+                        <i data-lucide="mail" class="w-5 h-5 text-zinc-500 group-hover:text-zinc-900 shrink-0"></i>
+
                         <div class="overflow-hidden">
+
                             <div class="text-xs font-mono text-zinc-400">E-MAIL</div>
-                            <div class="text-sm font-medium text-zinc-900 dark:text-white truncate">mkeskin23@marun.edu.tr</div>
+
+                            <div class="text-sm font-medium text-zinc-900 truncate">mkeskin23@marun.edu.tr</div>
+
                         </div>
+
                     </a>
 
-                    <a href="tel:+905398452334" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 hover:border-zinc-900 dark:hover:border-white transition-all group bg-zinc-50/50 dark:bg-zinc-800">
-                        <i data-lucide="phone" class="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white shrink-0"></i>
+
+
+                    <!-- Telefon -->
+
+                    <a href="tel:+905398452334" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 hover:border-zinc-900 transition-all group">
+
+                        <i data-lucide="phone" class="w-5 h-5 text-zinc-500 group-hover:text-zinc-900 shrink-0"></i>
+
                         <div class="overflow-hidden">
+
                             <div class="text-xs font-mono text-zinc-400" data-i18n="contact_phone_label">TELEFON</div>
-                            <div class="text-sm font-medium text-zinc-900 dark:text-white truncate">0539 845 23 34</div>
+
+                            <div class="text-sm font-medium text-zinc-900 truncate">0539 845 23 34</div>
+
                         </div>
+
                     </a>
 
-                    <a href="https://www.linkedin.com/in/murat-keskin-b02428280" target="_blank" rel="noopener" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 hover:border-zinc-900 dark:hover:border-white transition-all group bg-zinc-50/50 dark:bg-zinc-800">
-                        <svg class="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white fill-current shrink-0" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+
+
+                    <!-- LinkedIn -->
+
+                    <a href="https://www.linkedin.com/in/murat-keskin-b02428280" target="_blank" rel="noopener" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 hover:border-zinc-900 transition-all group">
+
+                        <svg class="w-5 h-5 text-zinc-500 group-hover:text-zinc-900 fill-current shrink-0" viewBox="0 0 24 24">
+
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+
+                        </svg>
+
                         <div class="overflow-hidden">
+
                             <div class="text-xs font-mono text-zinc-400">LINKEDIN</div>
-                            <div class="text-sm font-medium text-zinc-900 dark:text-white truncate">murat-keskin</div>
+
+                            <div class="text-sm font-medium text-zinc-900 truncate">murat-keskin</div>
+
                         </div>
+
                     </a>
 
-                    <a href="https://github.com/MuratK54" target="_blank" rel="noopener" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 hover:border-zinc-900 dark:hover:border-white transition-all group bg-zinc-50/50 dark:bg-zinc-800">
-                        <svg class="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white fill-current shrink-0" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+
+
+                    <!-- GitHub -->
+
+                    <a href="https://github.com/MuratK54" target="_blank" rel="noopener" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 hover:border-zinc-900 transition-all group">
+
+                        <svg class="w-5 h-5 text-zinc-500 group-hover:text-zinc-900 fill-current shrink-0" viewBox="0 0 24 24">
+
+                            <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+
+                        </svg>
+
                         <div class="overflow-hidden">
+
                             <div class="text-xs font-mono text-zinc-400">GITHUB</div>
-                            <div class="text-sm font-medium text-zinc-900 dark:text-white truncate">MuratK54</div>
+
+                            <div class="text-sm font-medium text-zinc-900 truncate">MuratK54</div>
+
                         </div>
+
                     </a>
 
-                    <a href="https://grabcad.com/murat.keskin-7" target="_blank" rel="noopener" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 hover:border-zinc-900 dark:hover:border-white transition-all group bg-zinc-50/50 dark:bg-zinc-800">
-                        <i data-lucide="box" class="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white shrink-0"></i>
+
+
+                    <!-- GrabCAD -->
+
+                    <a href="https://grabcad.com/murat.keskin-7" target="_blank" rel="noopener" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 hover:border-zinc-900 transition-all group">
+
+                        <i data-lucide="box" class="w-5 h-5 text-zinc-500 group-hover:text-zinc-900 shrink-0"></i>
+
                         <div class="overflow-hidden">
+
                             <div class="text-xs font-mono text-zinc-400">GRABCAD</div>
-                            <div class="text-sm font-medium text-zinc-900 dark:text-white truncate">murat.keskin-7</div>
+
+                            <div class="text-sm font-medium text-zinc-900 truncate">murat.keskin-7</div>
+
                         </div>
+
                     </a>
+
                 </div>
+
             </div>
+
         </section>
+
+
 
     </main>
 
-    <!-- PROJE TEKNİK FÖYÜ MODALI (SPEC SHEET MODAL) -->
+
+
+    <!-- PROJE TEKNİK FÖYÜ MODALI (ENGINEERING SPEC SHEET MODAL) -->
+
     <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-zinc-900/60 backdrop-blur-xs">
-        <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl">
-            <div class="bg-zinc-900 dark:bg-zinc-800 text-white px-6 py-4 flex items-center justify-between">
-                <div class="flex items-center gap-2 font-mono text-xs"><span class="w-2 h-2 rounded-full bg-sky-400"></span><span id="modal-badge">ENGINEERING SPEC SHEET</span></div>
-                <button onclick="closeProjectModal()" class="text-zinc-400 hover:text-white transition-colors p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+
+        <div class="bg-white border border-zinc-200 rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+
+            <!-- Modal Üst Bar -->
+
+            <div class="bg-zinc-900 text-white px-6 py-4 flex items-center justify-between">
+
+                <div class="flex items-center gap-2 font-mono text-xs">
+
+                    <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+
+                    <span id="modal-badge">ENGINEERING SPEC SHEET</span>
+
+                </div>
+
+                <button onclick="closeProjectModal()" class="text-zinc-400 hover:text-white transition-colors p-1">
+
+                    <i data-lucide="x" class="w-5 h-5"></i>
+
+                </button>
+
             </div>
-            <div id="modal-blueprint" class="blueprint-bg border-b border-zinc-200 dark:border-zinc-800 px-6 py-6 flex items-center justify-center"></div>
+
+
+
+            <!-- Modal Blueprint Önizleme -->
+
+            <div id="modal-blueprint" class="blueprint-bg border-b border-zinc-200 px-6 py-6 flex items-center justify-center"></div>
+
+
+
+            <!-- Modal İçerik -->
+
             <div class="p-6 sm:p-8 space-y-5">
-                <h3 id="modal-title" class="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white"></h3>
-                <p id="modal-desc" class="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed"></p>
-                <div class="bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl p-4">
+
+                <h3 id="modal-title" class="text-xl sm:text-2xl font-bold text-zinc-900"></h3>
+
+                <p id="modal-desc" class="text-sm sm:text-base text-zinc-600 leading-relaxed"></p>
+
+
+
+                <!-- Teknik Parametre Tablosu -->
+
+                <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-4">
+
                     <div class="font-mono text-[11px] uppercase text-zinc-400 mb-2.5" id="modal-spec-header">TEKNİK PARAMETRELER & METODOLOJİ</div>
-                    <div id="modal-specs" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-mono text-zinc-700 dark:text-zinc-300"></div>
+
+                    <div id="modal-specs" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-mono text-zinc-700"></div>
+
                 </div>
+
+
+
+                <!-- Etiketler ve Bağlantı -->
+
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+
                     <div id="modal-tags" class="flex flex-wrap gap-1.5"></div>
-                    <a id="modal-link" href="#" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-zinc-900 dark:bg-white dark:text-zinc-900 text-white text-xs font-mono font-medium px-5 py-2.5 rounded-lg hover:bg-zinc-800 transition-colors shrink-0">
+
+                    <a id="modal-link" href="#" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-zinc-900 text-white text-xs font-mono font-medium px-5 py-2.5 rounded-lg hover:bg-zinc-800 transition-colors shrink-0">
+
                         <span id="modal-link-text">Modeli İncele</span>
+
                         <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+
                     </a>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
+
+
     <!-- Footer -->
-    <footer class="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 py-8 relative z-10 transition-colors duration-300">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 dark:text-zinc-400 gap-4">
-            <div class="font-mono">© <span id="year"></span> Murat Keskin • İstanbul, Türkiye</div>
-            <div class="font-mono flex items-center gap-4"><span>0539 845 23 34</span><span>•</span><span>mkeskin23@marun.edu.tr</span></div>
+
+    <footer class="border-t border-zinc-200 bg-white py-8 relative z-10">
+
+        <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 gap-4">
+
+            <div class="font-mono">
+
+                © <span id="year"></span> Murat Keskin • İstanbul, Türkiye
+
+            </div>
+
+            <div class="font-mono text-zinc-400 flex items-center gap-4">
+
+                <span>0539 845 23 34</span>
+
+                <span>•</span>
+
+                <span>mkeskin23@marun.edu.tr</span>
+
+            </div>
+
         </div>
+
     </footer>
 
-    <!-- JAVASCRIPT: TYPEWRITER (DAKTİLO), TEMA, 3D TILT VE MODAL SİSTEMİ -->
+
+
+    <!-- JAVASCRIPT: PROJELER, ANİMASYONLAR, 3D TILT VE DİL SİSTEMİ -->
+
     <script>
-        // Daktilo Efekti için Unvan Listesi
-        const TITLES_TR = [
-            "CAD/CAE & PDM Application Engineer",
-            "Mekatronik Mühendisi",
-            "PDM & PLM Uzmanı",
-            "Mühendislik Otomasyonu Geliştiricisi"
-        ];
-        const TITLES_EN = [
-            "CAD/CAE & PDM Application Engineer",
-            "Mechatronics Engineer",
-            "PDM & PLM Specialist",
-            "Engineering Automation Developer"
-        ];
 
-        let titleIdx = 0, charIdx = 0, isDeleting = false, typingSpeed = 100;
-
-        function typeWriter() {
-            const currentTitles = (typeof currentLang !== 'undefined' && currentLang === 'en') ? TITLES_EN : TITLES_TR;
-            const fullText = currentTitles[titleIdx];
-            const el = document.getElementById('typewriter-text');
-            if(!el) return;
-
-            if (isDeleting) {
-                el.textContent = fullText.substring(0, charIdx - 1);
-                charIdx--;
-                typingSpeed = 50;
-            } else {
-                el.textContent = fullText.substring(0, charIdx + 1);
-                charIdx++;
-                typingSpeed = 100;
-            }
-
-            if (!isDeleting && charIdx === fullText.length) {
-                isDeleting = true;
-                typingSpeed = 2000;
-            } else if (isDeleting && charIdx === 0) {
-                isDeleting = false;
-                titleIdx = (titleIdx + 1) % currentTitles.length;
-                typingSpeed = 500;
-            }
-            setTimeout(typeWriter, typingSpeed);
-        }
-
-        // Gece / Gündüz Modu Değiştirme
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.getElementById('theme-icon');
-            const isDark = body.classList.toggle('dark');
-            
-            if (isDark) {
-                icon.setAttribute('data-lucide', 'sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                icon.setAttribute('data-lucide', 'moon');
-                localStorage.setItem('theme', 'light');
-            }
-            lucide.createIcons();
-        }
-
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark');
-            window.addEventListener('DOMContentLoaded', () => {
-                const icon = document.getElementById('theme-icon');
-                if(icon) icon.setAttribute('data-lucide', 'sun');
-                lucide.createIcons();
-            });
-        }
+        // HAREKETLİ TEKNİK CAD ŞEMALARI (SVG BLUEPRINTS)
 
         const BLUEPRINTS = {
-            nozzle: `<svg class="w-full h-32 stroke-zinc-700 dark:stroke-zinc-300" viewBox="0 0 340 110" fill="none" stroke-width="1.5"><line x1="15" y1="55" x2="325" y2="55" stroke-dasharray="4 4" stroke="#94a3b8"/><path class="cad-path" d="M40 20 L150 38 L275 16" stroke-width="2.2"/><path class="cad-path" d="M40 90 L150 72 L275 94" stroke-width="2.2"/><ellipse cx="40" cy="55" rx="9" ry="35"/><ellipse cx="150" cy="55" rx="6" ry="17" stroke-dasharray="3 2"/><ellipse cx="275" cy="55" rx="11" ry="39"/></svg>`,
-            drone: `<svg class="w-full h-32 stroke-zinc-700 dark:stroke-zinc-300" viewBox="0 0 340 110" fill="none" stroke-width="1.5"><line x1="95" y1="25" x2="245" y2="85" class="cad-path" stroke-width="2.2"/><line x1="245" y1="25" x2="95" y2="85" class="cad-path" stroke-width="2.2"/><rect x="148" y="40" width="44" height="30" rx="6"/><circle cx="170" cy="55" r="6"/><circle cx="95" cy="25" r="18" stroke-dasharray="8 4"/><circle cx="245" cy="25" r="18" stroke-dasharray="8 4"/></svg>`,
-            shredder: `<svg class="w-full h-32 stroke-zinc-700 dark:stroke-zinc-300" viewBox="0 0 340 110" fill="none" stroke-width="1.5"><rect x="55" y="16" width="230" height="78" rx="4" class="cad-path" stroke-width="2"/><circle cx="142" cy="55" r="24" stroke-width="2" stroke-dasharray="10 5"/><circle cx="198" cy="55" r="24" stroke-width="2" stroke-dasharray="10 5"/></svg>`,
-            dxf: `<svg class="w-full h-32 stroke-zinc-700 dark:stroke-zinc-300" viewBox="0 0 340 110" fill="none" stroke-width="1.5"><rect x="35" y="18" width="270" height="74" rx="4" stroke-dasharray="4 3"/><rect x="52" y="28" width="75" height="54" rx="3" class="cad-path"/><circle cx="89.5" cy="55" r="14"/><polygon points="145,28 215,28 198,82 145,82" class="cad-path"/></svg>`,
-            enclosure: `<svg class="w-full h-32 stroke-zinc-700 dark:stroke-zinc-300" viewBox="0 0 340 110" fill="none" stroke-width="1.5"><rect x="65" y="25" width="210" height="58" rx="4" class="cad-path" stroke-width="2"/><line x1="88" y1="25" x2="88" y2="83"/><line x1="104" y1="25" x2="104" y2="83"/><rect x="162" y="42" width="26" height="20" rx="2"/><rect x="198" y="42" width="26" height="20" rx="2"/></svg>`,
-            stem: `<svg class="w-full h-32 stroke-zinc-700 dark:stroke-zinc-300" viewBox="0 0 340 110" fill="none" stroke-width="1.5"><circle cx="80" cy="55" r="25" class="cad-path" stroke-width="2"/><circle cx="260" cy="55" r="19" class="cad-path" stroke-width="2"/><path class="cad-path" d="M100 37 L246 40" stroke-width="2"/><path class="cad-path" d="M100 73 L246 70" stroke-width="2"/></svg>`
+
+            nozzle: `<svg class="w-full h-32 stroke-zinc-700" viewBox="0 0 340 110" fill="none" stroke-width="1.5">
+
+                <line x1="15" y1="55" x2="325" y2="55" stroke-dasharray="4 4" stroke="#94a3b8"/>
+
+                <path class="cad-path" d="M40 20 L150 38 L275 16" stroke-width="2.2"/>
+
+                <path class="cad-path" d="M40 90 L150 72 L275 94" stroke-width="2.2"/>
+
+                <ellipse cx="40" cy="55" rx="9" ry="35" stroke="#64748b"/>
+
+                <ellipse cx="150" cy="55" rx="6" ry="17" stroke="#0284c7" stroke-dasharray="3 2"/>
+
+                <ellipse cx="275" cy="55" rx="11" ry="39" stroke="#64748b"/>
+
+                <path d="M65 55 L125 55 M175 55 L255 55" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+                <text x="128" y="15" fill="#0284c7" font-family="monospace" font-weight="bold" font-size="9">THROAT (Ma=1.0)</text>
+
+                <text x="235" y="106" fill="#64748b" font-family="monospace" font-size="9">SUPERSONIC EXIT</text>
+
+            </svg>`,
+
+
+
+            drone: `<svg class="w-full h-32 stroke-zinc-700" viewBox="0 0 340 110" fill="none" stroke-width="1.5">
+
+                <line x1="95" y1="25" x2="245" y2="85" class="cad-path" stroke-width="2.2"/>
+
+                <line x1="245" y1="25" x2="95" y2="85" class="cad-path" stroke-width="2.2"/>
+
+                <rect x="148" y="40" width="44" height="30" rx="6" fill="#f8fafc" stroke="#18181b" stroke-width="2"/>
+
+                <circle cx="170" cy="55" r="6" stroke="#0284c7" stroke-width="1.8"/>
+
+                <g class="spin-slow" style="transform-origin: 95px 25px;">
+
+                    <circle cx="95" cy="25" r="18" stroke="#0284c7" stroke-dasharray="8 4"/>
+
+                    <line x1="80" y1="25" x2="110" y2="25" stroke="#18181b"/>
+
+                </g>
+
+                <g class="spin-reverse" style="transform-origin: 245px 25px;">
+
+                    <circle cx="245" cy="25" r="18" stroke="#0284c7" stroke-dasharray="8 4"/>
+
+                    <line x1="230" y1="25" x2="260" y2="25" stroke="#18181b"/>
+
+                </g>
+
+                <g class="spin-reverse" style="transform-origin: 95px 85px;">
+
+                    <circle cx="95" cy="85" r="18" stroke="#0284c7" stroke-dasharray="8 4"/>
+
+                    <line x1="80" y1="85" x2="110" y2="85" stroke="#18181b"/>
+
+                </g>
+
+                <g class="spin-slow" style="transform-origin: 245px 85px;">
+
+                    <circle cx="245" cy="85" r="18" stroke="#0284c7" stroke-dasharray="8 4"/>
+
+                    <line x1="230" y1="85" x2="260" y2="85" stroke="#18181b"/>
+
+                </g>
+
+                <text x="18" y="18" fill="#0284c7" font-family="monospace" font-weight="bold" font-size="9">HIGH-SPEED UAV CHASSIS</text>
+
+                <text x="230" y="106" fill="#64748b" font-family="monospace" font-size="9">CFD & CV TRACKING</text>
+
+            </svg>`,
+
+
+
+            shredder: `<svg class="w-full h-32 stroke-zinc-700" viewBox="0 0 340 110" fill="none" stroke-width="1.5">
+
+                <rect x="55" y="16" width="230" height="78" rx="4" class="cad-path" stroke-width="2"/>
+
+                <line x1="85" y1="16" x2="85" y2="94" stroke="#94a3b8" stroke-dasharray="3 3"/>
+
+                <line x1="255" y1="16" x2="255" y2="94" stroke="#94a3b8" stroke-dasharray="3 3"/>
+
+                <g class="spin-slow" style="transform-origin: 142px 55px;">
+
+                    <circle cx="142" cy="55" r="24" stroke="#18181b" stroke-width="2" stroke-dasharray="10 5"/>
+
+                    <circle cx="142" cy="55" r="10" stroke="#0284c7" stroke-width="1.8"/>
+
+                    <line x1="142" y1="27" x2="142" y2="83"/><line x1="114" y1="55" x2="170" y2="55"/>
+
+                </g>
+
+                <g class="spin-reverse" style="transform-origin: 198px 55px;">
+
+                    <circle cx="198" cy="55" r="24" stroke="#18181b" stroke-width="2" stroke-dasharray="10 5"/>
+
+                    <circle cx="198" cy="55" r="10" stroke="#0284c7" stroke-width="1.8"/>
+
+                    <line x1="198" y1="27" x2="198" y2="83"/><line x1="170" y1="55" x2="226" y2="55"/>
+
+                </g>
+
+                <text x="62" y="12" fill="#0284c7" font-family="monospace" font-weight="bold" font-size="9">DUAL-SHAFT SHREDDER CUTTER</text>
+
+                <text x="195" y="105" fill="#64748b" font-family="monospace" font-size="9">HIGH-TORQUE GEARBOX</text>
+
+            </svg>`,
+
+
+
+            dxf: `<svg class="w-full h-32 stroke-zinc-700" viewBox="0 0 340 110" fill="none" stroke-width="1.5">
+
+                <rect x="35" y="18" width="270" height="74" rx="4" stroke-dasharray="4 3" stroke="#64748b"/>
+
+                <rect x="52" y="28" width="75" height="54" rx="3" class="cad-path" stroke-width="1.8"/>
+
+                <circle cx="89.5" cy="55" r="14" stroke="#0284c7"/>
+
+                <polygon points="145,28 215,28 198,82 145,82" class="cad-path" stroke-width="1.8"/>
+
+                <circle cx="255" cy="55" r="23" class="cad-path" stroke-width="1.8"/>
+
+                <circle cx="255" cy="55" r="8" stroke="#0284c7"/>
+
+                <circle class="laser-dot" cx="52" cy="28" r="4" fill="#ef4444" stroke="#fca5a5" stroke-width="2"/>
+
+                <text x="40" y="13" fill="#0284c7" font-family="monospace" font-weight="bold" font-size="9">PYTHON DXF PARSER • LASER NESTING</text>
+
+            </svg>`,
+
+
+
+            enclosure: `<svg class="w-full h-32 stroke-zinc-700" viewBox="0 0 340 110" fill="none" stroke-width="1.5">
+
+                <rect x="65" y="25" width="210" height="58" rx="4" class="cad-path" stroke-width="2"/>
+
+                <line x1="88" y1="25" x2="88" y2="83"/><line x1="104" y1="25" x2="104" y2="83"/>
+
+                <line x1="120" y1="25" x2="120" y2="83"/><line x1="136" y1="25" x2="136" y2="83"/>
+
+                <rect x="162" y="42" width="26" height="20" rx="2" stroke="#0284c7"/>
+
+                <rect x="198" y="42" width="26" height="20" rx="2" stroke="#0284c7"/>
+
+                <circle cx="246" cy="52" r="7"/>
+
+                <circle cx="50" cy="36" r="3.5" stroke="#64748b"/><circle cx="50" cy="72" r="3.5" stroke="#64748b"/>
+
+                <circle cx="290" cy="36" r="3.5" stroke="#64748b"/><circle cx="290" cy="72" r="3.5" stroke="#64748b"/>
+
+                <text x="68" y="16" fill="#0284c7" font-family="monospace" font-weight="bold" font-size="9">AL-6061 EXTRUSION & SHEET METAL DFM</text>
+
+            </svg>`,
+
+
+
+            stem: `<svg class="w-full h-32 stroke-zinc-700" viewBox="0 0 340 110" fill="none" stroke-width="1.5">
+
+                <circle cx="80" cy="55" r="25" class="cad-path" stroke-width="2"/>
+
+                <circle cx="80" cy="55" r="15" stroke="#64748b"/>
+
+                <circle cx="260" cy="55" r="19" class="cad-path" stroke-width="2"/>
+
+                <circle cx="260" cy="55" r="11" stroke="#64748b"/>
+
+                <path class="cad-path" d="M100 37 L246 40" stroke-width="2"/>
+
+                <path class="cad-path" d="M100 73 L246 70" stroke-width="2"/>
+
+                <polygon points="122,46 164,46 154,64 122,64" stroke="#0284c7" fill="rgba(2,132,199,0.06)"/>
+
+                <polygon points="178,46 224,47 224,63 168,64" stroke="#0284c7" fill="rgba(2,132,199,0.06)"/>
+
+                <text x="108" y="24" fill="#0284c7" font-family="monospace" font-weight="bold" font-size="9">FEA TOPOLOGY & MASS OPTIMIZATION</text>
+
+            </svg>`
+
         };
 
+
+
+        // 6 SEÇİLMİŞ PROJE VERİSİ (DETAYLI MÜHENDİSLİK FÖYLERİ İLE)
+
         const PROJECTS_DATA = [
+
             {
-                id: "teknofest-stratos", category: "cad-cae", blueprint: "nozzle", badge: "TEKNOFEST 2026 • Takım Kaptanı",
-                title: { tr: "STRATOS — Jet Motoru Yakınsak-Iraksak (C-D) Nozül Tasarımı", en: "STRATOS — Jet Engine Convergent-Divergent (C-D) Nozzle Design" },
-                description: { tr: "TEKNOFEST 2026 Jet Motor Tasarım Yarışması'nda STRATOS Takım Kaptanı olarak yönetilen Ar-Ge projesi. C-D nozül FEA ve CFD analizleri.", en: "Led the STRATOS team as Team Captain in TEKNOFEST 2026. Executed C-D nozzle FEA & CFD simulations." },
-                specs: { tr: ["Rol: Takım Kaptanı", "Geometri: C-D Nozül", "Analiz: FEA & CFD", "Rapor: KTR Aşaması"], en: ["Role: Team Captain", "Geometry: C-D Nozzle", "Analysis: FEA & CFD", "Milestone: CDR Stage"] },
-                tags: ["SOLIDWORKS", "ANSYS FEA/CFD", "Aerotermodinamik", "Team Captain"],
-                linkText: { tr: "GrabCAD Kütüphanesi", en: "GrabCAD Library" }, linkUrl: "https://grabcad.com/murat.keskin-7"
+
+                id: "teknofest-stratos",
+
+                category: "cad-cae",
+
+                blueprint: "nozzle",
+
+                badge: "TEKNOFEST 2026 • Takım Kaptanı",
+
+                title: {
+
+                    tr: "STRATOS — Jet Motoru Yakınsak-Iraksak (C-D) Nozül Tasarımı",
+
+                    en: "STRATOS — Jet Engine Convergent-Divergent (C-D) Nozzle Design"
+
+                },
+
+                description: {
+
+                    tr: "TEKNOFEST 2026 Jet Motor Tasarım Yarışması'nda STRATOS Takım Kaptanı olarak Kritik Tasarım Raporu (KTR) aşamasına kadar yönetilen Ar-Ge projesi. İtki optimizasyonu amacıyla C-D nozül geometrilerinin 3D CAD modellemesi, Sonlu Elemanlar (FEA) ve Hesaplamalı Akışkanlar Dinamiği (CFD) analizleri gerçekleştirilmiştir.",
+
+                    en: "Led the STRATOS team as Team Captain up to the Critical Design Report (CDR) stage in the TEKNOFEST 2026 Jet Engine Design Competition. Executed 3D CAD modeling, thrust optimization, Finite Element Analysis (FEA), and Computational Fluid Dynamics (CFD) simulations for C-D nozzle geometries."
+
+                },
+
+                specs: {
+
+                    tr: ["Rol: Takım Kaptanı & Mekanik Analiz", "Geometri: Eksenel Simetrik C-D Nozül", "Analiz: Termal-Yapısal FEA & Süpersonik CFD", "Aşama: Kritik Tasarım Raporu (KTR)"],
+
+                    en: ["Role: Team Captain & Mechanical Analysis", "Geometry: Axisymmetric C-D Nozzle", "Simulation: Coupled Thermal-FEA & CFD", "Milestone: Critical Design Report (CDR)"]
+
+                },
+
+                tags: ["SOLIDWORKS", "ANSYS FEA/CFD", "Aerotermodinamik", "Nozzle Kinematics"],
+
+                linkText: {
+
+                    tr: "GrabCAD Kütüphanesi",
+
+                    en: "GrabCAD Library"
+
+                },
+
+                linkUrl: "https://grabcad.com/murat.keskin-7"
+
             },
+
             {
-                id: "bitirme-drone", category: "cad-cae", blueprint: "drone", badge: "Mechatronics • Bitirme Projesi",
-                title: { tr: "Yüksek Hızlı Hedef Takip Eden Drone Tasarımı", en: "High-Speed Target Tracking Drone (Capstone Project)" },
-                description: { tr: "Bilgisayarlı görü ile hedef takibi yapabilen, yüksek hız rejimlerinde aerodinamik sürüklenmeyi minimize eden hibrit drone mekanik tasarımı.", en: "High-speed target-tracking UAV developed as a Mechatronics Engineering capstone project." },
-                specs: { tr: ["Gövde: Karbon-Fiber & Alüminyum", "Doğrulama: Modal & Titreşim FEA", "Payload: Bilgisayarlı Görü Gimbal", "Odak: Yüksek Hız Kararlılığı"], en: ["Airframe: Hybrid Carbon/Al", "Validation: Modal FEA", "Payload: Vision Gimbal", "Focus: High-Velocity Stability"] },
-                tags: ["SOLIDWORKS", "Modal FEA", "Aerodynamics", "UAV Airframe"],
-                linkText: { tr: "GrabCAD Kütüphanesi", en: "GrabCAD Library" }, linkUrl: "https://grabcad.com/murat.keskin-7"
+
+                id: "bitirme-drone",
+
+                category: "cad-cae",
+
+                blueprint: "drone",
+
+                badge: "Mechatronics • Bitirme Projesi",
+
+                title: {
+
+                    tr: "Yüksek Hızlı Hedef Takip Eden Drone Tasarımı",
+
+                    en: "High-Speed Target Tracking Drone (Capstone Project)"
+
+                },
+
+                description: {
+
+                    tr: "Marmara Üniversitesi Mekatronik Mühendisliği bitirme projesi kapsamında geliştirilen; bilgisayarlı görü ile otonom hedef takibi yapabilen, yüksek hız rejimlerinde aerodinamik sürüklenmeyi minimize etmek ve titreşim rijitliğini korumak üzere optimize edilmiş karbon/alüminyum hibrit drone mekanik tasarımı.",
+
+                    en: "High-speed target-tracking UAV developed as a Mechatronics Engineering capstone project at Marmara University. Features an aerodynamically streamlined carbon-fiber/aluminum hybrid airframe optimized via modal/harmonic vibration and structural FEA for high-velocity computer vision tracking."
+
+                },
+
+                specs: {
+
+                    tr: ["Gövde: Karbon-Fiber & Alüminyum Hibrit Şasi", "Doğrulama: Modal Frekans & Titreşim Analizi", "Entegrasyon: Bilgisayarlı Görü & Kamera Gimbal", "Odak: Yüksek Hız Aerodinamik Kararlılık"],
+
+                    en: ["Airframe: Carbon-Fiber & Al-6061 Hybrid", "Validation: Modal Frequency & Vibration FEA", "Payload: Computer Vision & Gimbal Mount", "Focus: High-Velocity Aerodynamic Stability"]
+
+                },
+
+                tags: ["SOLIDWORKS", "Modal & Vibration FEA", "Aerodynamics", "UAV Airframe", "Computer Vision"],
+
+                linkText: {
+
+                    tr: "GrabCAD Kütüphanesi",
+
+                    en: "GrabCAD Library"
+
+                },
+
+                linkUrl: "https://grabcad.com/murat.keskin-7"
+
             },
+
             {
-                id: "hurda-ogutme", category: "cad-cae", blueprint: "shredder", badge: "Heavy Machinery • 3D CAD",
-                title: { tr: "Endüstriyel Hurda Öğütme ve Parçalama Makinesi Tasarımı", en: "Industrial Dual-Shaft Scrap Shredder Machine Design" },
-                description: { tr: "Ağır sanayi hurda malzemelerinin hacmini düşürmek için tasarlanan yüksek torklu kesici bıçak geometrileri, dişli kutusu ve konstrüksiyon gövde tasarımı.", en: "Heavy-duty dual-shaft industrial shredder engineered for scrap volume reduction and recycling." },
-                specs: { tr: ["Mekanik: Çift Şaftlı Kesici", "Gövde: Kaynaklı Ağır Çelik", "Analiz: Burulma & Gerilme FEA", "İmalat: DFM Uyumlu"], en: ["Mechanism: Dual-Shaft Cutters", "Structure: Welded Steel Hopper", "Analysis: Torsion & Stress FEA", "Manufacturing: DFM Ready"] },
-                tags: ["SOLIDWORKS", "Heavy Machinery", "Weldments", "Sheet Metal"],
-                linkText: { tr: "GrabCAD Kütüphanesi", en: "GrabCAD Library" }, linkUrl: "https://grabcad.com/murat.keskin-7"
+
+                id: "hurda-ogutme",
+
+                category: "cad-cae",
+
+                blueprint: "shredder",
+
+                badge: "Heavy Machinery • 3D CAD",
+
+                title: {
+
+                    tr: "Endüstriyel Hurda Öğütme ve Parçalama Makinesi Tasarımı",
+
+                    en: "Industrial Dual-Shaft Scrap Shredder Machine Design"
+
+                },
+
+                description: {
+
+                    tr: "Ağır sanayi metal ve plastik hurda malzemelerinin hacmini düşürmek ve geri dönüşüm süreçlerine hazırlamak için tasarlanan çift şaftlı (dual-shaft) endüstriyel öğütme makinesi. Yüksek torklu altıgen şaftlar, aşınmaya dayanıklı kesici bıçak dizilimi, redüktör/dişli kutusu entegrasyonu ve kaynaklı ağır hizmet konstrüksiyon gövde tasarımı.",
+
+                    en: "Heavy-duty dual-shaft industrial shredder engineered for scrap volume reduction and recycling. Features high-torque hexagonal shafts, replaceable alloy cutter blades, planetary gearbox coupling, and a reinforced welded steel structural hopper."
+
+                },
+
+                specs: {
+
+                    tr: ["Mekanizma: Çift Şaftlı Yüksek Torklu Kesici", "Konstrüksiyon: Kaynaklı Ağır Hizmet Çelik Gövde", "Analiz: Şaft Burulma & Bıçak Gerilme FEA", "İmalat: DFM & Montaj Tolerans Kurgusu"],
+
+                    en: ["Mechanism: Dual-Shaft High-Torque Cutters", "Structure: Heavy-Duty Welded Steel Hopper", "Analysis: Shaft Torsion & Blade Stress FEA", "Manufacturing: Full DFM & Assembly Mates"]
+
+                },
+
+                tags: ["SOLIDWORKS", "Heavy Machinery", "Weldments", "Sheet Metal", "Torque & Stress FEA"],
+
+                linkText: {
+
+                    tr: "GrabCAD Kütüphanesi",
+
+                    en: "GrabCAD Library"
+
+                },
+
+                linkUrl: "https://grabcad.com/murat.keskin-7"
+
             },
+
             {
-                id: "lazer-maliyet", category: "software", blueprint: "dxf", badge: "Python • CAD Automation",
-                title: { tr: "Lazer Maliyet Motoru (DXF Analiz & Maliyet Otomasyonu)", en: "Laser Cost Calculation Engine (DXF Parser & Automation)" },
-                description: { tr: "DXF dosyalarını doğrudan okuyarak sac levha lazer kesim uzunluğunu, patlatma sayısını ve toplam üretim maliyetini hesaplayan masaüstü yazılım.", en: "Desktop engineering application that parses DXF files directly to calculate sheet metal laser cutting cost." },
-                specs: { tr: ["Altyapı: Python (ezdxf & Pandas)", "Girdi: 2B Sac Metal DXF", "Çıktı: Kesim Boyu & Maliyet", "Kazanım: %90 Hızlı Teklif"], en: ["Stack: Python (ezdxf)", "Input: 2D DXF Files", "Output: Cost & Cut Length", "Impact: 90% Faster Quoting"] },
-                tags: ["Python", "ezdxf", "Pandas", "Sheet Metal", "Automation"],
-                linkText: { tr: "GitHub Profili (MuratK54)", en: "GitHub Profile (MuratK54)" }, linkUrl: "https://github.com/MuratK54"
+
+                id: "lazer-maliyet",
+
+                category: "software",
+
+                blueprint: "dxf",
+
+                badge: "Python • CAD Automation",
+
+                title: {
+
+                    tr: "Lazer Maliyet Motoru (DXF Analiz & Maliyet Otomasyonu)",
+
+                    en: "Laser Cost Calculation Engine (DXF Parser & Automation)"
+
+                },
+
+                description: {
+
+                    tr: "DXF dosyalarını doğrudan okuyarak sac levha lazer kesim uzunluğunu, patlatma (piercing) sayısını, malzeme kullanımını ve toplam üretim maliyetini saniyeler içinde otomatik hesaplayan masaüstü mühendislik yazılımı.",
+
+                    en: "Desktop engineering application that parses DXF files directly to automatically calculate sheet metal laser cutting path length, piercing count, material utilization, and total manufacturing cost within seconds."
+
+                },
+
+                specs: {
+
+                    tr: ["Altyapı: Python (ezdxf & Pandas)", "Girdi: 2B Sac Metal DXF Geometri Dosyaları", "Çıktı: Kesim Boyu, Piercing, Süre & Maliyet", "Kazanım: Tekliflendirme Süresinde %90 Hızlanma"],
+
+                    en: ["Stack: Python (ezdxf & Pandas)", "Input: 2D Sheet Metal DXF Geometries", "Output: Cut Length, Piercing, Time & Cost", "Impact: 90% Faster Quoting Workflow"]
+
+                },
+
+                tags: ["Python", "ezdxf", "Pandas", "Sheet Metal", "DFM Automation"],
+
+                linkText: {
+
+                    tr: "GitHub Profili (MuratK54)",
+
+                    en: "GitHub Profile (MuratK54)"
+
+                },
+
+                linkUrl: "https://github.com/MuratK54"
+
             },
+
             {
-                id: "endustriyel-modem", category: "cad-cae", blueprint: "enclosure", badge: "3D CAD • DFM / Enclosure",
-                title: { tr: "Endüstriyel Modem & Elektronik Muhafaza Tasarımları", en: "Industrial Modem & Electronic Enclosure Designs" },
-                description: { tr: "Zorlu saha koşullarına uygun, 6061 alüminyum ekstrüzyon gövde ve sac metal kapak bileşenlerinden oluşan endüstriyel modem tasarımları (DFM odaklı).", en: "Industrial-grade modem enclosures featuring 6061 aluminum extruded housings and sheet metal brackets." },
-                specs: { tr: ["Malzeme: Al-6061 Ekstrüzyon", "Metodoloji: DFM İlkeleri", "Detay: Soğutma Kanatçıkları", "Doğrulama: Simülasyon"], en: ["Material: Al-6061 Extrusion", "Methodology: DFM Principles", "Features: Heatsink Fins", "Validation: Simulation"] },
-                tags: ["SOLIDWORKS", "Simulation", "Sheet Metal", "DFM & GD&T"],
-                linkText: { tr: "GrabCAD Kütüphanesi", en: "GrabCAD Library" }, linkUrl: "https://grabcad.com/murat.keskin-7"
+
+                id: "endustriyel-modem",
+
+                category: "cad-cae",
+
+                blueprint: "enclosure",
+
+                badge: "3D CAD • DFM / Enclosure",
+
+                title: {
+
+                    tr: "Endüstriyel Modem & Elektronik Muhafaza Tasarımları",
+
+                    en: "Industrial Modem & Electronic Enclosure Designs"
+
+                },
+
+                description: {
+
+                    tr: "Zorlu saha ve çalışma koşullarına uygun, 6061 alüminyum ekstrüzyon gövde, sac metal braketler ve enjeksiyon plastik kapak bileşenlerinden oluşan endüstriyel haberleşme modemi tasarımları. İmalata Uygun Tasarım (DFM), PCB montaj toleransları ve SOLIDWORKS Simulation doğrulamalarıyla geliştirilmiştir.",
+
+                    en: "Industrial-grade communication modem enclosures featuring 6061 aluminum extruded housings, sheet metal brackets, and plastic covers. Engineered with strict adherence to Design for Manufacturing (DFM), PCB mounting tolerances, and SOLIDWORKS Simulation validation."
+
+                },
+
+                specs: {
+
+                    tr: ["Malzeme: Al-6061 Ekstrüzyon & Sac Metal", "Metodoloji: İmalata Uygun Tasarım (DFM)", "Detay: Entegre Soğutma Kanatçıkları & PCB Kızakları", "Doğrulama: Darbe ve Statik Yük Simülasyonu"],
+
+                    en: ["Material: Al-6061 Extrusion & Sheet Metal", "Methodology: Design for Manufacturing (DFM)", "Features: Integrated Heatsink Fins & PCB Slots", "Validation: Structural & Drop Test Simulation"]
+
+                },
+
+                tags: ["SOLIDWORKS", "SOLIDWORKS Simulation", "6061 Aluminum", "Sheet Metal", "DFM & GD&T"],
+
+                linkText: {
+
+                    tr: "GrabCAD Kütüphanesi",
+
+                    en: "GrabCAD Library"
+
+                },
+
+                linkUrl: "https://grabcad.com/murat.keskin-7"
+
             },
+
             {
-                id: "cad-cae-stem", category: "cad-cae", blueprint: "stem", badge: "CAD / FEA • Optimization",
-                title: { tr: "Alüminyum Bisiklet Gidon Boğazı (FEA & Optimizasyon)", en: "Aluminum Bicycle Stem (FEA & Shape Optimization)" },
-                description: { tr: "Alüminyum gidon boğazının FEA ile doğrulanması ve emniyet katsayısı korunarak kütle azaltımı (topoloji ve şekil optimizasyonu) çalışması.", en: "3D parametric modeling and FEA validation of an aluminum bicycle stem achieving mass reduction." },
-                specs: { tr: ["Malzeme: Alüminyum Alaşım", "Analiz: Statik & Topoloji", "Hedef: Kütle Azaltımı", "Yazılım: SOLIDWORKS & Fusion 360"], en: ["Material: Aluminum Alloy", "Analysis: Static & Topology", "Goal: Mass Reduction", "Software: SOLIDWORKS / Fusion"] },
-                tags: ["SOLIDWORKS", "Fusion 360 FEA", "Static Analysis", "Optimization"],
-                linkText: { tr: "GrabCAD Kütüphanesi", en: "GrabCAD Library" }, linkUrl: "https://grabcad.com/murat.keskin-7"
+
+                id: "cad-cae-stem",
+
+                category: "cad-cae",
+
+                blueprint: "stem",
+
+                badge: "CAD / FEA • Optimization",
+
+                title: {
+
+                    tr: "Alüminyum Bisiklet Gidon Boğazı (FEA & Şekil Optimizasyonu)",
+
+                    en: "Aluminum Bicycle Stem (FEA & Shape Optimization)"
+
+                },
+
+                description: {
+
+                    tr: "3B parametrik modellemesi yapılan alüminyum gidon boğazının kritik yükleme senaryoları altında sonlu elemanlar analizi (FEA) ile doğrulanması ve emniyet katsayısı korunarak kütle azaltımı (topoloji ve şekil optimizasyonu) çalışması.",
+
+                    en: "3D parametric modeling and Finite Element Analysis (FEA) validation of an aluminum bicycle stem under critical loading conditions, achieving significant mass reduction through topology and shape optimization while maintaining safety factors."
+
+                },
+
+                specs: {
+
+                    tr: ["Malzeme: Alüminyum Alaşım (7075-T6 / 6061)", "Analiz: Statik Gerilme & Topoloji Optimizasyonu", "Hedef: Emniyet Katsayısı Korunarak Kütle Azaltımı", "Yazılım: SOLIDWORKS & Fusion 360 FEA"],
+
+                    en: ["Material: Aluminum Alloy (7075-T6 / 6061)", "Analysis: Static Stress & Topology Study", "Goal: Mass Reduction with Target Safety Factor", "Software: SOLIDWORKS & Fusion 360 FEA"]
+
+                },
+
+                tags: ["SOLIDWORKS", "Fusion 360 FEA", "Static Analysis", "Topology Optimization"],
+
+                linkText: {
+
+                    tr: "GrabCAD Kütüphanesi",
+
+                    en: "GrabCAD Library"
+
+                },
+
+                linkUrl: "https://grabcad.com/murat.keskin-7"
+
             }
+
         ];
+
+
+
+        // ÇİFT DİL SÖZLÜĞÜ (TR / EN)
+
+        const I18N = {
+
+            tr: {
+
+                nav_about: "Hakkımda",
+
+                nav_exp: "Deneyim",
+
+                nav_projects: "Projeler",
+
+                nav_skills: "Yetkinlikler",
+
+                nav_certs: "Sertifikalar",
+
+                nav_contact: "İletişim",
+
+                btn_cv_short: "CV İndir",
+
+                btn_cv_full: "CV İndir (PDF)",
+
+                btn_explore: "Portföyü İncele",
+
+                btn_copy_email: "E-Postayı Kopyala",
+
+                hero_badge: "CAD / CAE / PDM & Mühendislik Otomasyonu",
+
+                hero_title: "Mekatronik Mühendisi | CAD/CAE & PDM Application Engineer",
+
+                hero_bio: "Marmara Üniversitesi Mekatronik Mühendisliği geçmişimi, TEKYAZ Teknolojik Yazılımlar bünyesindeki SOLIDWORKS CAD/CAE, PDM ve 3DEXPERIENCE (PLM) tecrübemle birleştiriyorum. Statik, frekans, burkulma, yorulma ve akış (FEA/CFD) simülasyonları, sac metal/kalıp/yüzey modelleme, İmalata Uygun Tasarım (DFM), otomotiv kalite yönetim standartları (IATF 16949, APQP, PPAP, FMEA) ve mühendislik süreçlerini hızlandıran yazılım otomasyonları üzerine çalışıyorum.",
+
+                metric_1_label: "SERTİFİKALI UZMANLIK",
+
+                metric_1_sub: "Dassault Systèmes & TEKYAZ",
+
+                metric_2_label: "TASARIM & DOĞRULAMA",
+
+                metric_2_sub: "DFM, GD&T, Sac Metal & Kalıp",
+
+                metric_3_label: "KALİTE STANDARTLARI",
+
+                metric_4_label: "MÜHENDİSLİK OTOMASYONU",
+
+                metric_4_sub: "DXF Analiz & Veri İşleme",
+
+                sec_exp_title: "Profesyonel Deneyim",
+
+                exp_1_role: "CAD/CAE & PDM Application Engineer (İYE / Stajyer)",
+
+                exp_1_date: "Temmuz 2026 — Devam Ediyor",
+
+                exp_1_b1: "SOLIDWORKS ve SOLIDWORKS PDM süreçlerinde kurumsal kullanıcılara doğrudan teknik destek ve uygulama mühendisliği çözümleri sunulması.",
+
+                exp_1_b2: "SOLIDWORKS Kalıp Tasarımı, Profil Tasarımı ve PDM Kullanıcı süreçleriyle CAD veri yönetimi iş akışlarının yürütülmesi.",
+
+                exp_1_b3: "3DEXPERIENCE platformu üzerinde Temel Veri Yönetimi sertifikasyonu ile PLM süreçlerine katkı sağlanması.",
+
+                exp_2_role: "Mekanik Tasarım Mühendisi Stajyeri",
+
+                exp_2_date: "Temmuz 2025 — Eylül 2025",
+
+                exp_2_b1: "SOLIDWORKS kullanarak endüstriyel elektronik ve modem donanımları için 3D modelleme ve CAD tasarım süreçlerinin yürütülmesi.",
+
+                exp_2_b2: "Sac metal ve yüzey tasarımı çalışmalarında üretilebilirlik odaklı tasarım (DFM) prensiplerinin uygulanması.",
+
+                exp_2_b3: "SOLIDWORKS Simulation ile mekanik doğrulama ve mukavemet analizi çalışmalarına destek verilmesi.",
+
+                exp_3_role: "Üretim Teknisyeni Stajyeri",
+
+                exp_3_date: "Haziran 2021 — Eylül 2021",
+
+                exp_3_b1: "Askeri standartlardaki endüstriyel elektronik cihazların üretim ve montaj süreçlerinde görev alınması.",
+
+                exp_3_b2: "Üretilen ağ ve haberleşme cihazlarının port testlerinin gerçekleştirilerek kalite kontrol süreçlerine katkı sağlanması.",
+
+                sec_projects_title: "Seçilmiş Projeler & CAD Verileri",
+
+                sec_projects_hint: "Teknik föyü (Spec Sheet) görüntülemek için proje kartlarına tıklayın.",
+
+                filter_all: "Tümü (6)",
+
+                filter_cad: "CAD / CAE & Mekanik (5)",
+
+                filter_sw: "Yazılım & Otomasyon (1)",
+
+                sec_skills_title: "Teknik Yetkinlikler",
+
+                skill_cat_1: "CAD & CAE Tasarım / Analiz",
+
+                skill_desc_1: "3B parametrik modelleme, sac metal, kalıp/yüzey tasarımı, FEA (statik/frekans/yorulma/burkulma) ve CFD.",
+
+                skill_cat_2: "PDM / PLM & Kalite Yönetimi",
+
+                skill_desc_2: "Ürün veri yönetimi, revizyon/iş akışı kontrolü, otomotiv kalite yönetim standartları ve yalın üretim.",
+
+                skill_cat_3: "Yazılım & Otomasyon",
+
+                skill_desc_3: "CAD/PDM otomasyon araçları, DXF analiz motorları, veri analizi, yapay zeka ve modern web geliştirme.",
+
+                sec_certs_title: "Sertifikalar & Eğitim",
+
+                edu_uni: "Marmara Üniversitesi",
+
+                edu_dept: "Mekatronik, Robotik ve Otomasyon Mühendisliği (Lisans)",
+
+                edu_sub: "Odak: Ürün Tasarımı, CAD/CAM, Mekanik Analiz",
+
+                edu_hs: "Pendik Türk Telekom Anadolu Teknik Lisesi",
+
+                edu_hs_dept: "Bilişim Teknolojileri Bölümü",
+
+                edu_hs_rank: "Okul İkincisi Olarak Mezun",
+
+                cert_cswa_sub: "Uluslararası 3B Modelleme ve Montaj Sertifikası",
+
+                cert_tekyaz_pdm: "SOLIDWORKS PDM & 3DEXPERIENCE Temel Veri Yönetimi",
+
+                cert_tekyaz_pdm_sub: "PDM Kullanıcı, Kalıp Tasarımı ve Profil Tasarımı Sertifikaları",
+
+                cert_quality_sub: "Otomotiv Kalite Yönetim Sistemi ve Süreç Doğrulama",
+
+                cert_tei_title: "TEI Havacılık Motorları Okulu",
+
+                cert_tei_sub: "Gaz Türbinli Motor Tasarımı ve Havacılık Mühendisliği",
+
+                cert_yok_title: "YÖK Veri Analizi Okulu (Yapay Zeka & ML)",
+
+                cert_yok_sub: "Yapay Zeka, Makine Öğrenmesi ve Veri Analitiği Modülü",
+
+                cert_osd_title: "OSD Otomotiv Yaz Kampı, GD&T ve Kaizen",
+
+                cert_osd_sub: "Geometrik Boyutlandırma/Toleranslandırma ve Sürekli İyileştirme",
+
+                sec_contact_title: "İletişime Geçin",
+
+                sec_contact_desc: "CAD/CAE projeleri, SOLIDWORKS PDM mimarisi, mühendislik otomasyonu veya kariyer fırsatları için aşağıdaki kanallardan bana doğrudan ulaşabilirsiniz.",
+
+                contact_phone_label: "TELEFON",
+
+                spec_btn: "Teknik Föy (Spec)",
+
+                toast_copied: "E-posta adresi kopyalandı: mkeskin23@marun.edu.tr"
+
+            },
+
+            en: {
+
+                nav_about: "About",
+
+                nav_exp: "Experience",
+
+                nav_projects: "Projects",
+
+                nav_skills: "Skills",
+
+                nav_certs: "Credentials",
+
+                nav_contact: "Contact",
+
+                btn_cv_short: "Download CV",
+
+                btn_cv_full: "Download CV (PDF)",
+
+                btn_explore: "Explore Portfolio",
+
+                btn_copy_email: "Copy Email",
+
+                hero_badge: "CAD / CAE / PDM & Engineering Automation",
+
+                hero_title: "Mechatronics Engineer | CAD/CAE & PDM Application Engineer",
+
+                hero_bio: "Combining my Mechatronics, Robotics, and Automation Engineering background at Marmara University with hands-on experience in SOLIDWORKS CAD/CAE, PDM, and 3DEXPERIENCE (PLM) at TEKYAZ. Focused on FEA/CFD simulations (static, frequency, buckling, fatigue, flow), sheet metal/mold/surface modeling, Design for Manufacturing (DFM), automotive quality standards (IATF 16949, APQP, PPAP, FMEA), and engineering software automation.",
+
+                metric_1_label: "CERTIFIED EXPERTISE",
+
+                metric_1_sub: "Dassault Systèmes & TEKYAZ",
+
+                metric_2_label: "DESIGN & VALIDATION",
+
+                metric_2_sub: "DFM, GD&T, Sheet Metal & Mold",
+
+                metric_3_label: "QUALITY STANDARDS",
+
+                metric_4_label: "ENGINEERING AUTOMATION",
+
+                metric_4_sub: "DXF Parsing & Data Analytics",
+
+                sec_exp_title: "Professional Experience",
+
+                exp_1_role: "CAD/CAE & PDM Application Engineer (Intern / Co-op)",
+
+                exp_1_date: "July 2026 — Present",
+
+                exp_1_b1: "Providing direct technical support and application engineering solutions for enterprise users in SOLIDWORKS and SOLIDWORKS PDM.",
+
+                exp_1_b2: "Executing CAD data management workflows with certifications in SOLIDWORKS Mold Design, Weldments, and PDM Administration/User.",
+
+                exp_1_b3: "Contributing to PLM workflows through 3DEXPERIENCE Fundamental Data Management certification.",
+
+                exp_2_role: "Mechanical Design Engineer Intern",
+
+                exp_2_date: "July 2025 — September 2025",
+
+                exp_2_b1: "Conducted 3D CAD modeling and mechanical design processes for industrial electronics and modem enclosures using SOLIDWORKS.",
+
+                exp_2_b2: "Applied Design for Manufacturing (DFM) principles across sheet metal and advanced surface modeling tasks.",
+
+                exp_2_b3: "Supported structural validation and finite element analysis studies using SOLIDWORKS Simulation.",
+
+                exp_3_role: "Production Technician Intern",
+
+                exp_3_date: "June 2021 — September 2021",
+
+                exp_3_b1: "Participated in the manufacturing and assembly processes of military-grade electronic communication devices.",
+
+                exp_3_b2: "Performed port testing and quality control procedures on industrial network switches.",
+
+                sec_projects_title: "Selected Projects & CAD Portfolio",
+
+                sec_projects_hint: "Click on any project card to open its Engineering Spec Sheet.",
+
+                filter_all: "All (6)",
+
+                filter_cad: "CAD / CAE & Mechanical (5)",
+
+                filter_sw: "Software & Automation (1)",
+
+                sec_skills_title: "Technical Competencies",
+
+                skill_cat_1: "CAD & CAE Design / Simulation",
+
+                skill_desc_1: "3D parametric modeling, sheet metal, mold/surface design, FEA (static/frequency/fatigue/buckling), and CFD.",
+
+                skill_cat_2: "PDM / PLM & Quality Standards",
+
+                skill_desc_2: "Product Data Management, revision/workflow control, automotive quality management tools, and lean manufacturing.",
+
+                skill_cat_3: "Software & Automation",
+
+                skill_desc_3: "CAD/PDM automation utilities, DXF geometry parsers, data analysis, AI fundamentals, and web apps.",
+
+                sec_certs_title: "Certifications & Education",
+
+                edu_uni: "Marmara University",
+
+                edu_dept: "Mechatronics, Robotics and Automation Engineering (B.Sc.)",
+
+                edu_sub: "Focus: Product Design, CAD/CAM, Mechanical Analysis",
+
+                edu_hs: "Pendik Türk Telekom Anatolian Technical High School",
+
+                edu_hs_dept: "Information Technologies Department",
+
+                edu_hs_rank: "Graduated 2nd in Class (Salutatorian)",
+
+                cert_cswa_sub: "International 3D Modeling & Assembly Certification",
+
+                cert_tekyaz_pdm: "SOLIDWORKS PDM & 3DEXPERIENCE Data Management",
+
+                cert_tekyaz_pdm_sub: "PDM User, Mold Design, and Weldments Certifications",
+
+                cert_quality_sub: "Automotive Quality Management System & Process Validation",
+
+                cert_tei_title: "TEI Aviation Engines School",
+
+                cert_tei_sub: "Gas Turbine Engine Design & Aerospace Engineering",
+
+                cert_yok_title: "YÖK Data Analysis School (AI & Machine Learning)",
+
+                cert_yok_sub: "Artificial Intelligence, Machine Learning & Data Analytics Module",
+
+                cert_osd_title: "OSD Automotive Summer Camp, GD&T & Kaizen",
+
+                cert_osd_sub: "Geometric Dimensioning & Tolerancing and Continuous Improvement",
+
+                sec_contact_title: "Get in Touch",
+
+                sec_contact_desc: "Feel free to reach out for CAD/CAE collaborations, SOLIDWORKS PDM consulting, custom engineering automation, or career opportunities.",
+
+                contact_phone_label: "PHONE",
+
+                spec_btn: "Spec Sheet",
+
+                toast_copied: "Email copied to clipboard: mkeskin23@marun.edu.tr"
+
+            }
+
+        };
+
+
 
         let currentLang = 'tr';
+
         let currentFilter = 'all';
 
+
+
+        // Proje Kartlarını Oluşturma
+
         function renderProjects() {
+
             const grid = document.getElementById('projects-grid');
-            if(!grid) return;
-            const filtered = currentFilter === 'all' ? PROJECTS_DATA : PROJECTS_DATA.filter(p => p.category === currentFilter);
+
+            const filtered = currentFilter === 'all' 
+
+                ? PROJECTS_DATA 
+
+                : PROJECTS_DATA.filter(p => p.category === currentFilter);
+
+
 
             grid.innerHTML = filtered.map(proj => `
-                <article onclick="openProjectModal('${proj.id}')" class="project-card bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-xl overflow-hidden flex flex-col justify-between tilt-card cursor-pointer group">
+
+                <article onclick="openProjectModal('${proj.id}')" class="project-card bg-white border border-zinc-200 rounded-xl overflow-hidden flex flex-col justify-between tilt-card cursor-pointer group">
+
                     <div>
-                        <div class="blueprint-bg border-b border-zinc-200/80 dark:border-zinc-700 px-4 py-3 flex items-center justify-center">
+
+                        <!-- Hareketli CAD Blueprint Başlığı -->
+
+                        <div class="blueprint-bg border-b border-zinc-200/80 px-4 py-3 flex items-center justify-center">
+
                             ${BLUEPRINTS[proj.blueprint] || ''}
+
                         </div>
+
+
+
                         <div class="p-6 pb-2">
+
                             <div class="flex items-center justify-between gap-2 mb-3">
-                                <span class="font-mono text-xs px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 font-medium group-hover:bg-zinc-900 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-zinc-900 transition-colors">${proj.badge}</span>
-                                <span class="font-mono text-[11px] text-sky-600 dark:text-sky-400 flex items-center gap-1 opacity-85 group-hover:opacity-100"><i data-lucide="maximize-2" class="w-3.5 h-3.5"></i><span>${I18N[currentLang].spec_btn}</span></span>
+
+                                <span class="font-mono text-xs px-2.5 py-1 rounded bg-zinc-100 text-zinc-800 font-medium group-hover:bg-zinc-900 group-hover:text-white transition-colors">
+
+                                    ${proj.badge}
+
+                                </span>
+
+                                <span class="font-mono text-[11px] text-sky-600 flex items-center gap-1 opacity-85 group-hover:opacity-100">
+
+                                    <i data-lucide="Maximize-2" class="w-3.5 h-3.5"></i>
+
+                                    <span>${I18N[currentLang].spec_btn}</span>
+
+                                </span>
+
                             </div>
-                            <h3 class="text-lg font-bold text-zinc-900 dark:text-white tracking-tight group-hover:text-sky-700 dark:group-hover:text-sky-400 transition-colors">${proj.title[currentLang]}</h3>
-                            <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-2.5 leading-relaxed">${proj.description[currentLang]}</p>
+
+                            <h3 class="text-lg font-bold text-zinc-900 tracking-tight group-hover:text-sky-700 transition-colors">
+
+                                ${proj.title[currentLang]}
+
+                            </h3>
+
+                            <p class="text-sm text-zinc-600 mt-2.5 leading-relaxed">
+
+                                ${proj.description[currentLang]}
+
+                            </p>
+
                         </div>
+
                     </div>
-                    <div class="px-6 pb-6 pt-4 mt-4 border-t border-zinc-100 dark:border-zinc-700/80">
+
+
+
+                    <div class="px-6 pb-6 pt-4 mt-4 border-t border-zinc-100">
+
                         <div class="flex flex-wrap gap-1.5 mb-4">
-                            ${proj.tags.map(t => `<span class="font-mono text-[11px] text-zinc-600 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-700 px-2 py-0.5 rounded">${t}</span>`).join('')}
+
+                            ${proj.tags.map(t => `<span class="font-mono text-[11px] text-zinc-600 bg-zinc-50 border border-zinc-200/90 px-2 py-0.5 rounded">${t}</span>`).join('')}
+
                         </div>
+
                         <div class="flex items-center justify-between">
-                            <a href="${proj.linkUrl}" onclick="event.stopPropagation()" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-zinc-900 dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
+
+                            <a href="${proj.linkUrl}" onclick="event.stopPropagation()" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-zinc-900 hover:text-sky-600 transition-colors">
+
                                 <span>${proj.linkText[currentLang]}</span>
+
                                 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+
                             </a>
+
                             <span class="font-mono text-[10px] text-zinc-400">ISO-128 CAD</span>
+
                         </div>
+
                     </div>
+
                 </article>
+
             `).join('');
 
+
+
             lucide.createIcons();
+
             initTiltCards();
+
         }
+
+
+
+        // Proje Teknik Föyü Modalını Açma
 
         function openProjectModal(projectId) {
+
             const proj = PROJECTS_DATA.find(p => p.id === projectId);
+
             if (!proj) return;
 
+
+
             document.getElementById('modal-badge').textContent = proj.badge;
+
             document.getElementById('modal-blueprint').innerHTML = BLUEPRINTS[proj.blueprint] || '';
+
             document.getElementById('modal-title').textContent = proj.title[currentLang];
+
             document.getElementById('modal-desc').textContent = proj.description[currentLang];
+
             document.getElementById('modal-spec-header').textContent = currentLang === 'tr' ? 'TEKNİK PARAMETRELER & METODOLOJİ' : 'TECHNICAL PARAMETERS & METHODOLOGY';
+
             
+
             const specsContainer = document.getElementById('modal-specs');
+
             specsContainer.innerHTML = (proj.specs[currentLang] || []).map(s => `
-                <div class="flex items-center gap-2 bg-white dark:bg-zinc-900 px-3 py-2 rounded border border-zinc-200/80 dark:border-zinc-700">
+
+                <div class="flex items-center gap-2 bg-white px-3 py-2 rounded border border-zinc-200/80">
+
                     <span class="w-1.5 h-1.5 rounded-full bg-sky-600 shrink-0"></span>
+
                     <span>${s}</span>
+
                 </div>
+
             `).join('');
 
+
+
             document.getElementById('modal-tags').innerHTML = proj.tags.map(t => 
-                `<span class="font-mono text-xs text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 rounded">${t}</span>`
+
+                `<span class="font-mono text-xs text-zinc-700 bg-zinc-100 px-2.5 py-1 rounded">${t}</span>`
+
             ).join('');
 
+
+
             const linkEl = document.getElementById('modal-link');
+
             linkEl.href = proj.linkUrl;
+
             document.getElementById('modal-link-text').textContent = proj.linkText[currentLang];
 
+
+
             const modal = document.getElementById('project-modal');
+
             modal.classList.remove('hidden');
+
             modal.classList.add('flex');
+
             lucide.createIcons();
+
         }
+
+
 
         function closeProjectModal() {
+
             const modal = document.getElementById('project-modal');
+
             modal.classList.add('hidden');
+
             modal.classList.remove('flex');
+
         }
+
+
+
+        // Kategori Filtreleme
 
         function filterProjects(category) {
+
             currentFilter = category;
+
             document.querySelectorAll('.filter-btn').forEach(btn => {
+
                 if (btn.getAttribute('data-filter') === category) {
-                    btn.className = "filter-btn active text-xs font-mono px-3.5 py-2 rounded-md bg-zinc-900 dark:bg-white dark:text-zinc-900 text-white transition-all";
+
+                    btn.className = "filter-btn active text-xs font-mono px-3.5 py-2 rounded-md bg-zinc-900 text-white transition-all";
+
                 } else {
-                    btn.className = "filter-btn text-xs font-mono px-3.5 py-2 rounded-md bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:border-zinc-900 dark:hover:border-white transition-all";
+
+                    btn.className = "filter-btn text-xs font-mono px-3.5 py-2 rounded-md bg-white border border-zinc-200 text-zinc-600 hover:border-zinc-900 transition-all";
+
                 }
+
             });
+
             renderProjects();
+
         }
+
+
+
+        // Dil Değiştirme (TR / EN)
 
         function toggleLanguage() {
+
             currentLang = currentLang === 'tr' ? 'en' : 'tr';
+
             document.documentElement.lang = currentLang;
+
             document.getElementById('lang-label').textContent = currentLang === 'tr' ? 'EN' : 'TR';
 
+
+
             document.querySelectorAll('[data-i18n]').forEach(el => {
+
                 const key = el.getAttribute('data-i18n');
+
                 if (I18N[currentLang][key]) {
+
                     el.textContent = I18N[currentLang][key];
+
                 }
+
             });
+
+
 
             renderProjects();
+
         }
 
-        // Gece / Gündüz Tema Değiştirme
-        function toggleTheme() {
-            const isDark = document.body.classList.toggle('dark');
-            const icon = document.getElementById('theme-icon');
-            if (isDark) {
-                icon.setAttribute('data-lucide', 'sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                icon.setAttribute('data-lucide', 'moon');
-                localStorage.setItem('theme', 'light');
-            }
-            lucide.createIcons();
-        }
 
-        if (localStorage.getItem('theme'] === 'dark') {
-            document.body.classList.add('dark');
-            window.addEventListener('DOMContentLoaded', () => {
-                const icon = document.getElementById('theme-icon');
-                if(icon) icon.setAttribute('data-lucide', 'sun');
-                lucide.createIcons();
-            });
-        }
+
+        // E-Posta Kopyalama ve Bildirim (Toast)
 
         function copyEmail() {
+
             const email = "mkeskin23@marun.edu.tr";
+
             if (navigator.clipboard && navigator.clipboard.writeText) {
+
                 navigator.clipboard.writeText(email);
+
             } else {
+
                 const tempInput = document.createElement("input");
+
                 tempInput.value = email;
+
                 document.body.appendChild(tempInput);
+
                 tempInput.select();
+
                 document.execCommand("copy");
+
                 document.body.removeChild(tempInput);
+
             }
+
+
 
             const toast = document.getElementById('toast');
+
             document.getElementById('toast-text').textContent = I18N[currentLang].toast_copied;
+
             toast.classList.remove('opacity-0', 'translate-y-3');
+
             toast.classList.add('opacity-100', 'translate-y-0');
 
+
+
             setTimeout(() => {
+
                 toast.classList.add('opacity-0', 'translate-y-3');
+
                 toast.classList.remove('opacity-100', 'translate-y-0');
+
             }, 2600);
+
         }
+
+
 
         function toggleMobileMenu() {
+
             const menu = document.getElementById('mobile-menu');
+
             menu.classList.toggle('hidden');
+
         }
+
+
+
+        // 3B Kart Eğim Efekti (3D Perspective Tilt)
 
         function initTiltCards() {
+
             if (window.innerWidth < 768) return;
+
             document.querySelectorAll('.tilt-card').forEach(card => {
+
                 card.onmousemove = (e) => {
+
                     const rect = card.getBoundingClientRect();
+
                     const x = e.clientX - rect.left;
+
                     const y = e.clientY - rect.top;
+
                     const rotateY = ((x / rect.width) - 0.5) * 5;
+
                     const rotateX = ((y / rect.height) - 0.5) * -5;
+
                     card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+
                 };
+
                 card.onmouseleave = () => {
+
                     card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)';
+
                 };
+
             });
+
         }
+
+
+
+        // Fare Takip Eden Spotlight & Canlı CAD Koordinat Sayacı
 
         window.addEventListener('mousemove', (e) => {
+
             document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+
             document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
 
+
+
             const coordsEl = document.getElementById('cad-coords');
+
             if (coordsEl) {
+
                 const cadX = String(Math.round(e.clientX * 1.25)).padStart(4, '0');
+
                 const cadY = String(Math.round(e.clientY * 1.25)).padStart(4, '0');
+
                 coordsEl.textContent = `X: ${cadX} Y: ${cadY}`;
+
             }
+
         });
+
+
+
+        // Üst Kaydırma İlerleme Çubuğu ve Scroll Reveal
 
         window.addEventListener('scroll', () => {
+
             const scrollTop = window.scrollY;
+
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
             const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
             document.getElementById('scroll-progress').style.width = `${progress}%`;
+
         });
+
+
+
+        // ESC veya Dışarı Tıklama ile Modalı Kapatma
 
         window.addEventListener('keydown', (e) => {
+
             if (e.key === 'Escape') closeProjectModal();
+
         });
+
         document.getElementById('project-modal').addEventListener('click', (e) => {
+
             if (e.target.id === 'project-modal') closeProjectModal();
+
         });
 
-        // Typewriter (Daktilo) Efekti Fonksiyonu
-        const TITLES_TR = [
-            "CAD/CAE & PDM Application Engineer",
-            "Mekatronik Mühendisi",
-            "PDM & PLM Uzmanı",
-            "Mühendislik Otomasyonu Geliştiricisi"
-        ];
-        const TITLES_EN = [
-            "CAD/CAE & PDM Application Engineer",
-            "Mechatronics Engineer",
-            "PDM & PLM Specialist",
-            "Engineering Automation Developer"
-        ];
 
-        let titleIdx = 0, charIdx = 0, isDeleting = false, typingSpeed = 100;
 
-        function typeWriter() {
-            const currentTitles = (typeof currentLang !== 'undefined' && currentLang === 'en') ? TITLES_EN : TITLES_TR;
-            const fullText = currentTitles[titleIdx];
-            const el = document.getElementById('typewriter-text');
-            if(!el) return;
-
-            if (isDeleting) {
-                el.textContent = fullText.substring(0, charIdx - 1);
-                charIdx--;
-                typingSpeed = 50;
-            } else {
-                el.textContent = fullText.substring(0, charIdx + 1);
-                charIdx++;
-                typingSpeed = 100;
-            }
-
-            if (!isDeleting && charIdx === fullText.length) {
-                isDeleting = true;
-                typingSpeed = 2000;
-            } else if (isDeleting && charIdx === 0) {
-                isDeleting = false;
-                titleIdx = (titleIdx + 1) % currentTitles.length;
-                typingSpeed = 500;
-            }
-            setTimeout(typeWriter, typingSpeed);
-        }
+        // Sayfa Yüklendiğinde Başlat
 
         window.addEventListener('DOMContentLoaded', () => {
+
             document.getElementById('year').textContent = new Date().getFullYear();
+
             renderProjects();
-            typeWriter();
+
             lucide.createIcons();
 
+
+
+            // IntersectionObserver ile Yumuşak Belirme Efekti
+
             const observer = new IntersectionObserver((entries) => {
+
                 entries.forEach(entry => {
+
                     if (entry.isIntersecting) {
+
                         entry.target.classList.add('active');
+
                     }
+
                 });
+
             }, { threshold: 0.1 });
 
+
+
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
         });
+
     </script>
+
 </body>
+
 </html>
